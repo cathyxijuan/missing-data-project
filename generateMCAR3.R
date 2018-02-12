@@ -30,7 +30,7 @@ MCARMinPattern <- function(model, sample.nobs=1000000,  missing.percentage){
 #sample.nobs: numeric; sample size without missing data
 #missing.percentage: numeric; a proportion of missing data
 #missing.percentage: vector specifying which columns are missing
-MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage){
+MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage=.5){
   missing.percentage <- missing.percentage
   data <- simulateData(model, sample.nobs=sample.nobs, seed=111)
   simuData <- data.frame(x1=data[,"x1"], x2=data[,"x2"], x3=data[,"x3"], x4=data[,"x4"],
@@ -43,7 +43,7 @@ MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage){
   simuData[(sample.nobs*perc.mis.per.chunk*2+1):(sample.nobs*perc.mis.per.chunk*3),  2] <-NA
   simuData
 }
-
+MCARMaxPattern(pop.mod2, missing.percentage = .5)
 
 
 #Usage: only for this research. Two variables have missing data; maximum number of missing patterns for two variables: (1) and (2) 
@@ -53,7 +53,7 @@ MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage){
 #sample.nobs: numeric; sample size without missing data
 #missing.percentage: numeric; a proportion of missing data
 #missing.percentage: vector specifying which columns are missing
-MCARMaxPattern2 <- function(model, sample.nobs=1000000,  missing.percentage){
+MCARMaxPattern2 <- function(model, sample.nobs=1000000,  missing.percentage=.5){
   missing.percentage <- missing.percentage
   simuData <- simulateData(model, sample.nobs=sample.nobs, seed=111)
   for(i in 0:1){
@@ -61,7 +61,6 @@ MCARMaxPattern2 <- function(model, sample.nobs=1000000,  missing.percentage){
   }
   simuData
 }
-
 
 #Arguments:
 #pop.model.list: a list of lavaan models for the population
