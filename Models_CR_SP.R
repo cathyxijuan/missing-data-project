@@ -486,7 +486,7 @@ pop.mod <- list( pop.mod1,
                  pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4, pop.mod3.5,
                  pop.mod4.1, pop.mod4.2, pop.mod4.3, pop.mod4.4, pop.mod4.5,
                  pop.mod5.1, pop.mod5.2, pop.mod5.3, pop.mod5.4, pop.mod5.5)
-# # 
+# 
 # sigma <-list()
 #  for(i in 1:length(pop.mod)){
 #    fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
@@ -516,3 +516,11 @@ pop.mod <- list( pop.mod1,
 # save(sigma.hat, file="sigma.hat.CR_SP.RData")
 # save(sigma, file="sigma.CR_SP.RData")
 
+
+# load("fit.complete.CR_SP.RData")
+# fit.complete.CR_SP<-fit.complete.CR
+# save(fit.complete.CR, file="fit.complete.CR_SP.RData")
+
+
+load("sigma.CR_SP.RData")
+sigma[[2]]
