@@ -61,12 +61,14 @@ MCARMaxPattern2 <- function(model, sample.nobs=1000000,  missing.percentage=.5){
   simuData
 }
 
+#Usage: put fit indices for a list of models into a matrix
+
 #Arguments:
 #pop.model.list: a list of lavaan models for the population
 #sample.nobs: numeric; sample size without missing data
 #missing.percentage: numeric; a proportion of missing data
 #missing.percentage: vector specifying which columns are missing
-#missing.type: a character: "min", "max1", "max2". "max1"=each variable has the same proportion of missingness but the total proportion is different. 
+#missing.type: a character: "min", "max", "max2". "max1"=each variable has the same proportion of missingness but the total proportion is different. 
 ############ "max2" = the total proportion of missingness is the same but the each variable has different proportions of missingness.
 fit.ind.matrix.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  missing.percentage, missing.type){
   fit.indices.MCAR <-matrix( nrow = 0, ncol = 6)
@@ -88,33 +90,61 @@ fit.ind.matrix.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 100000
 }
 
 
+#Usage: put sigma.hat for a list of models into a list
+
+#Arguments: same as above
+
+sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  missing.percentage, missing.type){
+  sigma.hat <-list()
+  
+  for(i in 1:length(pop.model.list)){
+    if(missing.type =="min"){
+      simuData <- MCARMinPattern(pop.model.list[[i]], sample.nobs, missing.percentage)} 
+    else if (missing.type == "max"){
+      simuData <- MCARMaxPattern(pop.model.list[[i]], sample.nobs, missing.percentage)
+    } else {
+      simuData <- MCARMaxPattern2(pop.model.list[[i]], sample.nobs, missing.percentage)
+    }
+    fit <- cfa(fitted.mod, data=simuData, missing="fiml", mimic="EQS")
+    sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
+  }
+  
+  sigma.hat
+  
+}
+
+
+
+sigma.hat.MCAR.MIN20.CR_DP <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+
+sigma.hat.MCAR.MIN50.CR_DP <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
+
+
+
+fit.MCAR.MIN20.CR_DP <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
 
 
 
+fit.MCAR.MIN50.CR_DP <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
 
-fit.MCAR.MIN20.CR2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+round(fit.MCAR.MIN20.CR_DP,6) 
+
+round(fit.MCAR.MIN50.CR_DP,6)
 
 
 
+#save(fit.MCAR.MIN20.CR_DP, file="fit.MCAR.MIN20.CR_DP.RData")
+#save(fit.MCAR.MIN50.CR_DP, file="fit.MCAR.MIN50.CR_DP.RData")
 
-fit.MCAR.MIN50.CR2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
-
-round(fit.MCAR.MIN20.CR2,6) 
-
-round(fit.MCAR.MIN50.CR2,6)
-
-# 
-#save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MIN20.CR3.RData")
-#save(fit.MCAR.MIN50.CR2, file="fit.MCAR.MIN50.CR3.RData")
 
 fit.MCAR.MAX50.CL <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
 fit.MCAR.MAX20.CL <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
 
-save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX20.CR3.RData")
-save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX50.CR3.RData")
+#save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX20.CR3.RData")
+#save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX50.CR3.RData")
 
 
  
