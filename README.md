@@ -1,1 +1,2 @@
-# missing-data-projectA line I wrote on my local computer
+# missing-data-project: generating missing data from one factor
+

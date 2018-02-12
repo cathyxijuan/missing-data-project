@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "43798913",
+    "hash" : "4258960109",
     "id" : "E691DD0B",
-    "lastKnownWriteTime" : 1518433682,
-    "last_content_update" : 1518433682,
+    "lastKnownWriteTime" : 1518440125,
+    "last_content_update" : 1518440125499,
     "path" : "~/missing-data-project/README.md",
     "project_path" : "README.md",
     "properties" : {
+        "cursorPosition" : "0,63",
+        "scrollLine" : "0"
     },
     "relative_order" : 2,
     "source_on_save" : false,
