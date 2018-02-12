@@ -485,38 +485,38 @@ pop.mod <- list( pop.mod1,
                  pop.mod2.1, pop.mod2.2, pop.mod2.3, pop.mod2.4, pop.mod2.5,
                  pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4, pop.mod3.5,
                  pop.mod4.1, pop.mod4.2, pop.mod4.3, pop.mod4.4, pop.mod4.5,
-                 pop.mod5.1, pop.mod5.2, pop.mod5.3, pop.mod5.4, pop.mod4.5)
-
-sigma <-list()
-for(i in 1:length(pop.mod)){
-  fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
-  sigma[[i]]<- lavInspect(fit, "cov.ov")
-}
-
- sigma.hat <-list()
- 
- for(i in 1:length(pop.mod)){
-   
- fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS") 
-   sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
- }
+                 pop.mod5.1, pop.mod5.2, pop.mod5.3, pop.mod5.4, pop.mod5.5)
 # 
+# sigma <-list()
+# for(i in 1:length(pop.mod)){
+#   fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
+#   sigma[[i]]<- lavInspect(fit, "cov.ov")
+# }
 # 
-# 
+#  sigma.hat <-list()
+#  
+#  for(i in 1:length(pop.mod)){
+#    
+#  fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS") 
+#    sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
+#  }
 # # 
- fit.indices.comp <-matrix( nrow = 0, ncol = 6)
-
- for(i in 1:length(pop.mod)){
-    simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
-    fit <- cfa(fitted.mod, data=simuData)
-    fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
-  }
-round(fit.indices.comp,4)
-fit.complete.CR <- fit.indices.comp
-
-save(fit.complete.CR, file="fit.complete.CR_DP.RData")
-save(sigma.hat, file="sigma.hat.CR_DP.RData")
-save(sigma, file="sigma.CR_DP.RData")
+# # 
+# # 
+# # # 
+#  fit.indices.comp <-matrix( nrow = 0, ncol = 6)
+# 
+#  for(i in 1:length(pop.mod)){
+#     simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
+#     fit <- cfa(fitted.mod, data=simuData)
+#     fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
+#   }
+# round(fit.indices.comp,4)
+# fit.complete.CR <- fit.indices.comp
+# 
+# save(fit.complete.CR, file="fit.complete.CR_DP.RData")
+# save(sigma.hat, file="sigma.hat.CR_DP.RData")
+# save(sigma, file="sigma.CR_DP.RData")
 
 
 
