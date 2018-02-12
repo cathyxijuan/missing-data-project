@@ -1,0 +1,125 @@
+library(lavaan)
+library(simsem)
+
+source("Models_CR.R")
+
+
+
+
+#purpose: create missing data on x1,  x2.
+#Argument:
+#model: lavaan defined population model
+#sample.nobs: numeric; sample size without missing data
+#missing.percentage: numeric; a proportion of missing data
+#missing.percentage: vector specifying which columns are missing
+MCARMinPattern <- function(model, sample.nobs=1000000,  missing.percentage){
+  data <- simulateData(model, sample.nobs=sample.nobs,seed=111)
+  simuData <- data.frame(x1=data[,"x1"], x2=data[,"x2"], x3=data[,"x3"], x4=data[,"x4"],
+                         x5=data[,"x5"], x6=data[,"x6"], x7=data[,"x7"], x8=data[,"x8"],
+                         x9=data[,"x9"], x10=data[,"x10"], x11=data[,"x11"], x12=data[,"x12"])
+  simuData[1:(sample.nobs*missing.percentage),  c(1:2)] <-NA
+  simuData
+}
+
+#Usage: only for this research.  Two variables has missing data; maximum number of missing patterns for two variables: (1), (2) 
+       # Each variable with missing data has the given percentage of missing data
+#Argument:
+#model: lavaan defined population model
+#sample.nobs: numeric; sample size without missing data
+#missing.percentage: numeric; a proportion of missing data
+#missing.percentage: vector specifying which columns are missing
+MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage){
+  n.miss.pat <- 3
+  missing.percentage <- missing.percentage
+  data <- simulateData(model, sample.nobs=sample.nobs, seed=111)
+  simuData <- data.frame(x1=data[,"x1"], x2=data[,"x2"], x3=data[,"x3"], x4=data[,"x4"],
+                         x5=data[,"x5"], x6=data[,"x6"], x7=data[,"x7"], x8=data[,"x8"],
+                         x9=data[,"x9"], x10=data[,"x10"], x11=data[,"x11"], x12=data[,"x12"])
+  
+  perc.mis.per.cell <- missing.percentage/(2^n.miss.pat/2)
+  simuData[1:(sample.nobs*perc.mis.per.cell),  c(1, 7)] <-NA
+  simuData[(sample.nobs*perc.mis.per.cell+1):(sample.nobs*perc.mis.per.cell*2),  c(2, 8)] <-NA
+  simuData[(sample.nobs*perc.mis.per.cell*2+1):(sample.nobs*perc.mis.per.cell*3),  c(3, 9)] <-NA
+  simuData[(sample.nobs*perc.mis.per.cell*3+1):(sample.nobs*perc.mis.per.cell*4),  c(1:2, 7:8)] <-NA
+  simuData[(sample.nobs*perc.mis.per.cell*4+1):(sample.nobs*perc.mis.per.cell*5),  c(2:3,8:9)] <-NA
+  simuData[(sample.nobs*perc.mis.per.cell*5+1):(sample.nobs*perc.mis.per.cell*6),  c(1,3, 7,9)] <-NA
+  simuData[(sample.nobs*perc.mis.per.cell*6+1):(sample.nobs*perc.mis.per.cell*7), c(1:3, 7:9)] <-NA
+  simuData
+}
+
+
+
+#Usage: only for this research. Two variables have missing data; maximum number of missing patterns for two variables: (1) and (2) 
+       #percentage of missing follows a staircase shape (i.e., the percentage of missing in one or more variables is the giving percentage)
+#Argument:
+#model: lavaan defined population model
+#sample.nobs: numeric; sample size without missing data
+#missing.percentage: numeric; a proportion of missing data
+#missing.percentage: vector specifying which columns are missing
+MCARMaxPattern2 <- function(model, sample.nobs=1000000,  missing.percentage){
+  missing.percentage <- missing.percentage
+  simuData <- simulateData(model, sample.nobs=sample.nobs, seed=111)
+  for(i in 0:1){
+    simuData[1:(sample.nobs*missing.percentage/(2^i)),1+i] <- NA
+  }
+  simuData
+}
+
+
+#Arguments:
+#pop.model.list: a list of lavaan models for the population
+#sample.nobs: numeric; sample size without missing data
+#missing.percentage: numeric; a proportion of missing data
+#missing.percentage: vector specifying which columns are missing
+#missing.type: a character: "min", "max1", "max2". "max1"=each variable has the same proportion of missingness but the total proportion is different. 
+############ "max2" = the total proportion of missingness is the same but the each variable has different proportions of missingness.
+fit.ind.matrix.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  missing.percentage, missing.type){
+  fit.indices.MCAR <-matrix( nrow = 0, ncol = 6)
+  
+  for(i in 1:length(pop.model.list)){
+    if(missing.type =="min"){
+      simuData <- MCARMinPattern(pop.model.list[[i]], sample.nobs, missing.percentage)} 
+    else if (missing.type == "max"){
+      simuData <- MCARMaxPattern(pop.model.list[[i]], sample.nobs, missing.percentage)
+    } else {
+      simuData <- MCARMaxPattern2(pop.model.list[[i]], sample.nobs, missing.percentage)
+    }
+    fit <- cfa(fitted.mod, data=simuData, missing="fiml", mimic="EQS")
+    fit.indices.MCAR<- rbind(fit.indices.MCAR,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
+  }
+  
+  fit.indices.MCAR
+  
+}
+
+
+
+
+
+
+
+
+fit.MCAR.MIN20.CR2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+
+
+
+
+fit.MCAR.MIN50.CR2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
+
+
+fit.MCAR.MIN20.CR2  
+
+fit.MCAR.MIN50.CR2
+
+# 
+#save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MIN20.CR2.RData")
+#save(fit.MCAR.MIN50.CR2, file="fit.MCAR.MIN50.CR2.RData")
+
+fit.MCAR.MAX50.CL <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
+fit.MCAR.MAX20.CL <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
+
+save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX20.CR2.RData")
+save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX50.CR2.RData")
+
+
+ 
