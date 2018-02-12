@@ -102,9 +102,9 @@ fit.MCAR.MIN20.CR2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fit
 fit.MCAR.MIN50.CR2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
 
-fit.MCAR.MIN20.CR2  
+round(fit.MCAR.MIN20.CR2,6) 
 
-fit.MCAR.MIN50.CR2
+round(fit.MCAR.MIN50.CR2,6)
 
 # 
 #save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MIN20.CR3.RData")
