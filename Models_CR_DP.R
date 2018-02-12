@@ -372,7 +372,9 @@ x11 ~~ 0.5*x12
 
 
 pop.mod <- list( pop.mod1, 
-                 pop.mod2)
+                 pop.mod2.1, pop.mod2.2, pop.mod2.3, pop.mod2.4, pop.mod2.5,
+                 pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4, pop.mod3.5,
+                 pop.mod4.1, pop.mod4.2, pop.mod4.3, pop.mod4.4, pop.mod4.5)
 
 sigma <-list()
 for(i in 1:length(pop.mod)){
@@ -380,45 +382,33 @@ for(i in 1:length(pop.mod)){
   sigma[[i]]<- lavInspect(fit, "cov.ov")
 }
 
-sigma.hat <-list()
-
-for(i in 1:length(pop.mod)){
-  
-  fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS") 
-  sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
-}
-
-
-
+# sigma.hat <-list()
 # 
- fit.indices.comp <-matrix( nrow = 0, ncol = 6)
+# for(i in 1:length(pop.mod)){
+#   
+#   fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS") 
+#   sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
+# }
 # 
-for(i in 1:length(pop.mod)){
-   simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
-   fit <- cfa(fitted.mod, data=simuData)
-    fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
-  }
+# 
+# 
+# # 
+#  fit.indices.comp <-matrix( nrow = 0, ncol = 6)
+# # 
+# for(i in 1:length(pop.mod)){
+#    simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
+#    fit <- cfa(fitted.mod, data=simuData)
+#     fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
+#   }
 # round(fit.indices.comp,4)
-# 
+# # 
 # fit.complete.CR <- fit.indices.comp
-# save(fit.complete.CR, file="fit.complete.CR.RData")
-# save(sigma.hat, file="sigma.hat.CR.RData")
-# save(sigma, file="sigma.CR.RData")
+
+#save(fit.complete.CR, file="fit.complete.CR_DP.RData")
+#save(sigma.hat, file="sigma.hat.CR_DP.RData")
+#save(sigma, file="sigma.CR_DP.RData")
 
 
-
-# ind <- c(5, 6,11,12)
-# #ind <- c(1:3, 7:10)
-# mod.n <-10
-# sigma.pop<- sigma[[mod.n]]
-# sigma.hat.pop <- sigma.hat[[mod.n]]
-# comp <- log(det(sigma.hat[[mod.n]])/det(sigma[[mod.n]]))
-# part1 <- log(det(sigma.hat[[mod.n]][-ind,-ind])/det(sigma[[mod.n]][-ind,-ind]))
-# round(comp, 6)<round(part1, 6)
-# 
-# comp <- log(det(sigma.hat[[mod.n]])/det(sigma[[mod.n]]))
-# part2 <- log(det(sigma.hat[[mod.n]][ind,ind])/det(sigma[[mod.n]][ind,ind]))
-# round(comp, 6)<round(part2, 6)
 
 
 
