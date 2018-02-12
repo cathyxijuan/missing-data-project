@@ -1,7 +1,7 @@
 library(lavaan)
 library(simsem)
 
-source("Models_CR.R")
+source("Models_CR_DP.R")
 
 
 
@@ -43,7 +43,6 @@ MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage=.5){
   simuData[(sample.nobs*perc.mis.per.chunk*2+1):(sample.nobs*perc.mis.per.chunk*3),  2] <-NA
   simuData
 }
-MCARMaxPattern(pop.mod2, missing.percentage = .5)
 
 
 #Usage: only for this research. Two variables have missing data; maximum number of missing patterns for two variables: (1) and (2) 
