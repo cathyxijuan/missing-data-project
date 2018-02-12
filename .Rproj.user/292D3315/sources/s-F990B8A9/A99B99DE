@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2849514827",
+    "hash" : "0",
     "id" : "A99B99DE",
-    "lastKnownWriteTime" : 1518438683,
-    "last_content_update" : 1518438683816,
+    "lastKnownWriteTime" : 1518439859,
+    "last_content_update" : 1518439859205,
     "path" : "~/missing-data-project/generateMCAR3.R",
     "project_path" : "generateMCAR3.R",
     "properties" : {
-        "cursorPosition" : "31,17",
-        "scrollLine" : "24"
+        "cursorPosition" : "46,0",
+        "scrollLine" : "33"
     },
     "relative_order" : 1,
     "source_on_save" : false,

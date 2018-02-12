@@ -22,28 +22,25 @@ MCARMinPattern <- function(model, sample.nobs=1000000,  missing.percentage){
 }
 
 #Usage: only for this research.  Two variables has missing data; maximum number of missing patterns for two variables: (1), (2) 
-       # Each variable with missing data has the given percentage of missing data
+       # Each variable with missing data has the given percentage of missing data. 
+       # It has four missing data patterns:1) missing data on X1; 2) missing data on both x1 and x2; 3) missing data on x2; 4) no missing data pattern
+     
 #Argument:
 #model: lavaan defined population model
 #sample.nobs: numeric; sample size without missing data
 #missing.percentage: numeric; a proportion of missing data
 #missing.percentage: vector specifying which columns are missing
 MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage){
-  n.miss.pat <- 3
   missing.percentage <- missing.percentage
   data <- simulateData(model, sample.nobs=sample.nobs, seed=111)
   simuData <- data.frame(x1=data[,"x1"], x2=data[,"x2"], x3=data[,"x3"], x4=data[,"x4"],
                          x5=data[,"x5"], x6=data[,"x6"], x7=data[,"x7"], x8=data[,"x8"],
                          x9=data[,"x9"], x10=data[,"x10"], x11=data[,"x11"], x12=data[,"x12"])
   
-  perc.mis.per.cell <- missing.percentage/(2^n.miss.pat/2)
-  simuData[1:(sample.nobs*perc.mis.per.cell),  c(1, 7)] <-NA
-  simuData[(sample.nobs*perc.mis.per.cell+1):(sample.nobs*perc.mis.per.cell*2),  c(2, 8)] <-NA
-  simuData[(sample.nobs*perc.mis.per.cell*2+1):(sample.nobs*perc.mis.per.cell*3),  c(3, 9)] <-NA
-  simuData[(sample.nobs*perc.mis.per.cell*3+1):(sample.nobs*perc.mis.per.cell*4),  c(1:2, 7:8)] <-NA
-  simuData[(sample.nobs*perc.mis.per.cell*4+1):(sample.nobs*perc.mis.per.cell*5),  c(2:3,8:9)] <-NA
-  simuData[(sample.nobs*perc.mis.per.cell*5+1):(sample.nobs*perc.mis.per.cell*6),  c(1,3, 7,9)] <-NA
-  simuData[(sample.nobs*perc.mis.per.cell*6+1):(sample.nobs*perc.mis.per.cell*7), c(1:3, 7:9)] <-NA
+  perc.mis.per.chunk <- missing.percentage/2 # 4 missing data patterns
+  simuData[1:(sample.nobs*perc.mis.per.chunk), 1] <-NA
+  simuData[(sample.nobs*perc.mis.per.chunk+1):(sample.nobs*perc.mis.per.chunk*2),  1:2] <-NA
+  simuData[(sample.nobs*perc.mis.per.chunk*2+1):(sample.nobs*perc.mis.per.chunk*3),  2] <-NA
   simuData
 }
 
