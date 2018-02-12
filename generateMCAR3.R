@@ -108,14 +108,14 @@ fit.MCAR.MIN20.CR2
 fit.MCAR.MIN50.CR2
 
 # 
-#save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MIN20.CR2.RData")
-#save(fit.MCAR.MIN50.CR2, file="fit.MCAR.MIN50.CR2.RData")
+#save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MIN20.CR3.RData")
+#save(fit.MCAR.MIN50.CR2, file="fit.MCAR.MIN50.CR3.RData")
 
 fit.MCAR.MAX50.CL <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
 fit.MCAR.MAX20.CL <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
 
-save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX20.CR2.RData")
-save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX50.CR2.RData")
+save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX20.CR3.RData")
+save(fit.MCAR.MIN20.CR2, file="fit.MCAR.MAX50.CR3.RData")
 
 
  
