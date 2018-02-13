@@ -1,7 +1,7 @@
 library(lavaan)
 library(simsem)
 
-source("Models_CR_DP.R")
+source("Models_CR_SP.R")
 
 
 
@@ -115,28 +115,39 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 
 
 
-sigma.hat.MCAR.MIN20.CR_DP <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigma.hat.MCAR.MIN20.CR_SP <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
-sigma.hat.MCAR.MIN50.CR_DP <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-
-fit.MCAR.MIN20.CR_DP <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigma.hat.MCAR.MIN50.CR_SP <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
 
 
-
-fit.MCAR.MIN50.CR_DP <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-round(fit.MCAR.MIN20.CR_DP,6) 
-
-round(fit.MCAR.MIN50.CR_DP,6)
+fit.MCAR.MIN20.CR_SP <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
 
 
-#save(fit.MCAR.MIN20.CR_DP, file="fit.MCAR.MIN20.CR_DP.RData")
-#save(fit.MCAR.MIN50.CR_DP, file="fit.MCAR.MIN50.CR_DP.RData")
+
+fit.MCAR.MIN50.CR_SP <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
+
+
+round(fit.MCAR.MIN20.CR_SP,6) 
+
+round(fit.MCAR.MIN50.CR_SP,6)
+
+
+
+#save(fit.MCAR.MIN20.CR_SP, file="fit.MCAR.MIN20.CR_SP.RData")
+#save(fit.MCAR.MIN50.CR_SP, file="fit.MCAR.MIN50.CR_SP.RData")
+#save(sigma.hat.MCAR.MIN20.CR_SP, file="sigma.hat.MCAR.MIN20.CR_SP.RData")
+#save(sigma.hat.MCAR.MIN50.CR_SP, file="sigma.hat.MCAR.MIN50.CR_SP.RData")
+
+load("fit.MCAR.MIN50.CR_SP.RData")
+
+fit.MCAR.MIN50.CR
+simuData <- MCARMinPattern(pop.mod[[2]], sample.nobs=1000000, missing.percentage=0.5)
+fit <- cfa(fitted.mod, data=simuData, missing="fiml", mimic="EQS")
+summary(fit, standardized=T, fit=T)
+
+
 
 
 
