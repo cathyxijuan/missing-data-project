@@ -142,10 +142,10 @@ round(fit.MCAR.MIN50.CR_SP,6)
 
 load("fit.MCAR.MIN50.CR_SP.RData")
 
-fit.MCAR.MIN50.CR
-simuData <- MCARMinPattern(pop.mod[[2]], sample.nobs=1000000, missing.percentage=0.5)
-fit <- cfa(fitted.mod, data=simuData, missing="fiml", mimic="EQS")
-summary(fit, standardized=T, fit=T)
+
+
+
+
 
 
 
