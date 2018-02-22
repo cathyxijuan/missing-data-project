@@ -151,6 +151,14 @@ load("fit.MCAR.MIN50.CR_SP.RData")
 
 
 
+
+
+
+
+
+
+
+
 fit.MCAR.MAX50.CL <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
 fit.MCAR.MAX20.CL <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
 
