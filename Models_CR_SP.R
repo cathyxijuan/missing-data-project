@@ -1,6 +1,6 @@
 library(lavaan)
 
-#DP= misfit and missing are in same place 
+#SP= misfit and missing are in same place 
 
 fitted.mod <- '     
 f1 =~ NA*x1 + x2 + x3 +x4 + x5 + x6
