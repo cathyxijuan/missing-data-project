@@ -1,7 +1,7 @@
 library(lavaan)
 library(simsem)
 
-source("Models_CR_SP.R")
+source("Models_CR_DP2.R")
 
 
 
@@ -115,32 +115,31 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 
 
 
-sigma.hat.MCAR.MIN20.CR_SP <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigma.hat.MCAR.MIN20.CR_DP2 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
-sigma.hat.MCAR.MIN50.CR_SP <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-
-fit.MCAR.MIN20.CR_SP <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigma.hat.MCAR.MIN50.CR_DP2 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
 
 
-
-fit.MCAR.MIN50.CR_SP <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-round(fit.MCAR.MIN20.CR_SP,6) 
-
-round(fit.MCAR.MIN50.CR_SP,6)
+fit.MCAR.MIN20.CR_DP2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
 
 
-#save(fit.MCAR.MIN20.CR_SP, file="fit.MCAR.MIN20.CR_SP.RData")
-#save(fit.MCAR.MIN50.CR_SP, file="fit.MCAR.MIN50.CR_SP.RData")
-#save(sigma.hat.MCAR.MIN20.CR_SP, file="sigma.hat.MCAR.MIN20.CR_SP.RData")
-#save(sigma.hat.MCAR.MIN50.CR_SP, file="sigma.hat.MCAR.MIN50.CR_SP.RData")
 
-load("fit.MCAR.MIN50.CR_SP.RData")
+fit.MCAR.MIN50.CR_DP2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
+
+
+round(fit.MCAR.MIN20.CR_DP2,6) 
+
+round(fit.MCAR.MIN50.CR_DP2,6)
+
+
+
+save(fit.MCAR.MIN20.CR_DP, file="fit.MCAR.MIN20.CR_DP.RData")
+save(fit.MCAR.MIN50.CR_DP, file="fit.MCAR.MIN50.CR_DP.RData")
+save(sigma.hat.MCAR.MIN20.CR_DP, file="sigma.hat.MCAR.MIN20.CR_DP.RData")
+save(sigma.hat.MCAR.MIN50.CR_DP, file="sigma.hat.MCAR.MIN50.CR_DP.RData")
+
 
 
 

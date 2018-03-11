@@ -1,6 +1,6 @@
 library(lavaan)
 
- #DP= misfit and missing are in different place 
+#DP= misfit and missing are in different place 
 
 fitted.mod <- '     
 f1 =~ NA*x1 + x2 + x3 +x4 + x5 + x6
@@ -52,7 +52,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.1*x12
+x5 ~~ 0.1*x6
 '
 
 pop.mod2.2 <- '    
@@ -73,7 +73,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.2*x12
+x5 ~~ 0.2*x6
 '
 
 pop.mod2.3 <- '    
@@ -115,7 +115,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.4*x12
+x5 ~~ 0.4*x6
 '
 
 
@@ -139,7 +139,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.5*x12
+x5 ~~ 0.5*x6
 '
 
 
@@ -188,7 +188,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.2*x12
+x5 ~~ 0.2*x6
 '
 
 pop.mod3.3 <- '    
@@ -209,7 +209,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.3*x12
+x5 ~~ 0.3*x6
 '
 
 pop.mod3.4 <- '    
@@ -230,7 +230,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.4*x12
+x5 ~~ 0.4*x6
 '
 
 
@@ -254,7 +254,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.5*x12
+x5 ~~ 0.5*x6
 '
 
 ##place of misfit and place of missing are different; 0.8 factor correlation 
@@ -278,7 +278,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.1*x12
+x5 ~~ 0.1*x6
 '
 
 pop.mod4.2 <- '    
@@ -299,7 +299,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.2*x12
+x5 ~~ 0.2*x6
 '
 
 pop.mod4.3 <- '    
@@ -320,7 +320,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.3*x12
+x5 ~~ 0.3*x6
 '
 
 pop.mod4.4 <- '    
@@ -341,7 +341,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.4*x12
+x5 ~~ 0.4*x6
 '
 
 
@@ -406,8 +406,3 @@ pop.mod <- list( pop.mod1,
 # save(fit.complete.CR_DP, file="fit.complete.CR_DP.RData")
 # save(sigma.hat.CR_DP, file="sigma.hat.CR_DP.RData")
 # save(sigma.CR_DP, file="sigma.CR_DP.RData")
-
-
-
-
-
