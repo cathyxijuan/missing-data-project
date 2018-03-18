@@ -1,7 +1,7 @@
 library(lavaan)
 library(simsem)
 
-source("Models_CR1_2.R")
+source("Models_CR1_1.R")
 
 
 
@@ -115,13 +115,13 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 
 
 
-sigmaHat_MCAR_20Missing_MinPat_CR1_2 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigmaHat_MCAR_20Missing_MinPat_CR1_1 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
-sigmaHat_MCAR_50Missing_MinPat_CR1_2 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
+sigmaHat_MCAR_50Missing_MinPat_CR1_1 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
 
 
-fitMCAR_20Missing_MinPat_CR1_2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+fitMCAR_20Missing_MinPat_CR1_1 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
 
 fitMCAR_50Missing_MinPat_CR1_2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
