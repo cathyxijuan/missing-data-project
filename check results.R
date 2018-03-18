@@ -30,3 +30,5 @@ fitNoMissing_CR1_3
 fitMCAR_20Missing_MinPat_CR1_3
 fitMCAR_50Missing_MinPat_CR1_3
 
+fitNoMissing_CR2_2
+
