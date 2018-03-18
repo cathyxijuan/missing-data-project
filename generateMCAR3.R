@@ -1,7 +1,7 @@
 library(lavaan)
 library(simsem)
 
-source("Models_CR_DP2.R")
+source("Models_CR1_2.R")
 
 
 
@@ -115,30 +115,28 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 
 
 
-sigma.hat.MCAR.MIN20.CR_DP2 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigmaHat_MCAR_20Missing_MinPat_CR1_2 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
-sigma.hat.MCAR.MIN50.CR_DP2 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-
-fit.MCAR.MIN20.CR_DP2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigmaHat_MCAR_50Missing_MinPat_CR1_2 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
 
 
-
-fit.MCAR.MIN50.CR_DP2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-round(fit.MCAR.MIN20.CR_DP2,6) 
-
-round(fit.MCAR.MIN50.CR_DP2,6)
+fitMCAR_20Missing_MinPat_CR1_2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
 
+fitMCAR_50Missing_MinPat_CR1_2 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
-save(fit.MCAR.MIN20.CR_DP, file="fit.MCAR.MIN20.CR_DP.RData")
-save(fit.MCAR.MIN50.CR_DP, file="fit.MCAR.MIN50.CR_DP.RData")
-save(sigma.hat.MCAR.MIN20.CR_DP, file="sigma.hat.MCAR.MIN20.CR_DP.RData")
-save(sigma.hat.MCAR.MIN50.CR_DP, file="sigma.hat.MCAR.MIN50.CR_DP.RData")
+
+round(fitMCAR_20Missing_MinPat_CR1_2,6) 
+
+round(fitMCAR_50Missing_MinPat_CR1_2,6)
+
+
+
+# save(fitMCAR_20Missing_MinPat_CR1_2, file="fitMCAR_20Missing_MinPat_CR1_2.RData")
+# save(fitMCAR_50Missing_MinPat_CR1_2, file="fitMCAR_50Missing_MinPat_CR1_2.RData")
+# save(sigmaHat_MCAR_20Missing_MinPat_CR1_2, file="sigmaHat_MCAR_20Missing_MinPat_CR1_2.RData")
+# save(sigmaHat_MCAR_50Missing_MinPat_CR1_2, file="sigmaHat_MCAR_50Missing_MinPat_CR1_2.RData")
 
 
 
