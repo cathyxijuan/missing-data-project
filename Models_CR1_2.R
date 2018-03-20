@@ -1,6 +1,6 @@
 library(lavaan)
 
-#misfit and missing are in different places but they are on the same factor
+# misfit and missing are in different places; but same factor
 
 fitted.mod <- '     
 f1 =~ NA*x1 + x2 + x3 +x4 + x5 + x6
@@ -32,7 +32,7 @@ x12 ~~ .51*x12
 
 
 
-##place of misfit and place of missing are different; 0 factor correlation 
+##0 factor correlation 
 
 pop.mod2.1 <- '    
 f1 =~ .7*x1 + .7*x2 + .7*x3 +.7*x4 + .7*x5 + .7*x6 
@@ -52,7 +52,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.1*x6
+x7 ~~ 0.1*x8
 '
 
 pop.mod2.2 <- '    
@@ -70,10 +70,10 @@ x6 ~~ .51*x6
 x7 ~~ .51*x7
 x8 ~~  .51*x8
 x9 ~~  .51*x9
-x10 ~~  .51*x10
-x11 ~~  .51*x11
+x10 ~~ .51*x10
+x11 ~~ .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.2*x6
+x7 ~~ 0.2*x8
 '
 
 pop.mod2.3 <- '    
@@ -94,7 +94,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.3*x6
+x7 ~~ 0.3*x8
 '
 
 pop.mod2.4 <- '    
@@ -115,7 +115,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.4*x6
+x7 ~~ 0.4*x8
 '
 
 
@@ -123,7 +123,8 @@ x5 ~~ 0.4*x6
 
 
 
-##place of misfit and place of missing are different; 0.4 factor correlation 
+
+## 0.4 factor correlation 
 
 
 pop.mod3.1 <- '    
@@ -144,10 +145,10 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.1*x6
+x7 ~~ 0.1*x8
 '
 
-pop.mod3.2 <- '    
+pop.mod3.2<- '    
 f1 =~ .7*x1 + .7*x2 + .7*x3 +.7*x4 + .7*x5 + .7*x6 
 f2 =~ .7*x7 + .7*x8 + .7*x9 +.7*x10 + .7*x11 + .7*x12 
 f1 ~~ 0.4*f2
@@ -165,7 +166,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.2*x6
+x7 ~~ 0.2*x8
 '
 
 pop.mod3.3 <- '    
@@ -186,7 +187,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.3*x6
+x7 ~~ 0.3*x8
 '
 
 pop.mod3.4 <- '    
@@ -207,15 +208,14 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.4*x6
+x7 ~~ 0.4*x8
 '
 
 
 
 
 
-
-##place of misfit and place of missing are different; 0.8 factor correlation 
+##0.8 factor correlation 
 
 
 pop.mod4.1 <- '    
@@ -236,7 +236,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.1*x6
+x7 ~~ 0.1*x8
 '
 
 pop.mod4.2 <- '    
@@ -257,7 +257,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.2*x6
+x7 ~~ 0.2*x8
 '
 
 pop.mod4.3 <- '    
@@ -278,7 +278,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.3*x6
+x7 ~~ 0.3*x8
 '
 
 pop.mod4.4 <- '    
@@ -299,7 +299,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.4*x6
+x7 ~~ 0.4*x8
 '
 
 
@@ -310,36 +310,46 @@ x5 ~~ 0.4*x6
 
 
 pop.mod <- list( pop.mod1, 
-                 pop.mod2.1, pop.mod2.2, pop.mod2.3, pop.mod2.4,
-                 pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4, 
+                 pop.mod2.1, pop.mod2.2, pop.mod2.3, pop.mod2.4, 
+                 pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4,
                  pop.mod4.1, pop.mod4.2, pop.mod4.3, pop.mod4.4)
 
+
+
+
+
+
 # sigma <-list()
-#  for(i in 1:length(pop.mod)){
-#   fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
+# 
+# for(i in 1:length(pop.mod)){
+#    fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
 #   sigma[[i]]<- lavInspect(fit, "cov.ov")
-#   }
+#  }
+# 
 # 
 # sigma.hat <-list()
 # 
 # for(i in 1:length(pop.mod)){
-# 
-# fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS")
+#   fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS")
 #    sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
-#  }
+# }
+# 
 # 
 # fit.indices.comp <-matrix( nrow = 0, ncol = 6)
 # 
 # for(i in 1:length(pop.mod)){
-#    simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
-#     fit <- cfa(fitted.mod, data=simuData)
-#     fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
-#    }
+#      simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
+#       fit <- cfa(fitted.mod, data=simuData)
+#      fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
+# }
 # round(fit.indices.comp,4)
-# fitNoMissing_CR1_2  <- fit.indices.comp
+# fitNoMissing_CR1_2 <- fit.indices.comp
 # sigmaHat_CR1_2 <- sigma.hat
-# sigma_CR1_2 <-sigma
+# sigma_CR1_2 <- sigma
 # 
-# save(fitNoMissing_CR1_2 , file="fitNoMissing_CR1_2.RData")
+# 
+# save(fitNoMissing_CR1_2, file="fitNoMissing_CR1_2.RData")
 # save(sigmaHat_CR1_2, file="sigmaHat_CR1_2.RData")
 # save(sigma_CR1_2, file="sigma_CR1_2.RData")
+
+

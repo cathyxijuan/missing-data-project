@@ -1,6 +1,6 @@
 library(lavaan)
 
- #DP= misfit and missing are in different place 
+#misfit and missing are in different places; different factors
 
 fitted.mod <- '     
 f1 =~ NA*x1 + x2 + x3 +x4 + x5 + x6
@@ -32,7 +32,7 @@ x12 ~~ .51*x12
 
 
 
-##place of misfit and place of missing are different; 0 factor correlation 
+## 0 factor correlation 
 
 pop.mod2.1 <- '    
 f1 =~ .7*x1 + .7*x2 + .7*x3 +.7*x4 + .7*x5 + .7*x6 
@@ -52,7 +52,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.1*x12
+x5 ~~ 0.1*x6
 '
 
 pop.mod2.2 <- '    
@@ -73,7 +73,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.2*x12
+x5 ~~ 0.2*x6
 '
 
 pop.mod2.3 <- '    
@@ -94,7 +94,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.3*x12
+x5 ~~ 0.3*x6
 '
 
 pop.mod2.4 <- '    
@@ -115,7 +115,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.4*x12
+x5 ~~ 0.4*x6
 '
 
 
@@ -123,9 +123,7 @@ x11 ~~ 0.4*x12
 
 
 
-
-
-##place of misfit and place of missing are different; 0.4 factor correlation 
+##0.4 factor correlation 
 
 
 pop.mod3.1 <- '    
@@ -146,7 +144,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.1*x12
+x5 ~~ 0.1*x6
 '
 
 pop.mod3.2 <- '    
@@ -167,7 +165,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.2*x12
+x5 ~~ 0.2*x6
 '
 
 pop.mod3.3 <- '    
@@ -188,7 +186,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.3*x12
+x5 ~~ 0.3*x6
 '
 
 pop.mod3.4 <- '    
@@ -209,13 +207,15 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.4*x12
+x5 ~~ 0.4*x6
 '
 
 
 
 
-##place of misfit and place of missing are different; 0.8 factor correlation 
+
+
+##0.8 factor correlation 
 
 
 pop.mod4.1 <- '    
@@ -236,7 +236,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.1*x12
+x5 ~~ 0.1*x6
 '
 
 pop.mod4.2 <- '    
@@ -257,7 +257,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.2*x12
+x5 ~~ 0.2*x6
 '
 
 pop.mod4.3 <- '    
@@ -278,7 +278,7 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.3*x12
+x5 ~~ 0.3*x6
 '
 
 pop.mod4.4 <- '    
@@ -299,16 +299,19 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x11 ~~ 0.4*x12
+x5 ~~ 0.4*x6
 '
 
 
 
 
 
+
+
+
 pop.mod <- list( pop.mod1, 
-                 pop.mod2.1, pop.mod2.2, pop.mod2.3, pop.mod2.4, 
-                 pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4,
+                 pop.mod2.1, pop.mod2.2, pop.mod2.3, pop.mod2.4,
+                 pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4, 
                  pop.mod4.1, pop.mod4.2, pop.mod4.3, pop.mod4.4)
 
 # sigma <-list()
@@ -333,15 +336,10 @@ pop.mod <- list( pop.mod1,
 #     fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
 #    }
 # round(fit.indices.comp,4)
-# fitNoMissing_CR1_1 <- fit.indices.comp
+# fitNoMissing_CR1_1  <- fit.indices.comp
 # sigmaHat_CR1_1 <- sigma.hat
 # sigma_CR1_1 <-sigma
 # 
-# save(fitNoMissing_CR1_1, file="fitNoMissing_CR1_1.RData")
-# save(sigmaHat_CR1_1 , file="sigmaHat_CR1_1 .RData")
-# save(sigma_CR1_1 , file="sigma_CR1_1.RData")
-
-
-
-
-
+# save(fitNoMissing_CR1_1 , file="fitNoMissing_CR1_1.RData")
+# save(sigmaHat_CR1_1, file="sigmaHat_CR1_1.RData")
+# save(sigma_CR1_1, file="sigma_CR1_1.RData")
