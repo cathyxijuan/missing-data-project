@@ -1,7 +1,7 @@
 library(lavaan)
 library(simsem)
 
-source("Models_CR1_3.R")
+source("Models_CR1_1.R")
 
 
 
@@ -115,28 +115,28 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 
 
 
-sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_3 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_1 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
-sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_3 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-
-fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_3 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
-
-
-fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-round(fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_3,6) 
-
-round(fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3,6)
+sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_1 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
 
 
-save(sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_3, file="sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_3.RData")
-save(sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1, file="sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_3.RData")
-save(fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_3, file="fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_3.RData")
-save(fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3, file="fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3.RData")
+fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_1 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+
+
+fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_1 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
+
+
+round(fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_1,6) 
+
+round(fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_1,6)
+
+
+
+save(sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_1, file="sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_1.RData")
+save(sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_1, file="sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_1.RData")
+save(fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_1, file="fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_1.RData")
+save(fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_1, file="fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_1.RData")
 
 
 
