@@ -1,7 +1,7 @@
 library(lavaan)
 library(simsem)
 
-source("Models_WM1.R")
+source("Models_CR1_3.R")
 
 
 
@@ -17,7 +17,7 @@ MCARMinPattern <- function(model, sample.nobs=1000000,  missing.percentage){
   simuData <- data.frame(x1=data[,"x1"], x2=data[,"x2"], x3=data[,"x3"], x4=data[,"x4"],
                          x5=data[,"x5"], x6=data[,"x6"], x7=data[,"x7"], x8=data[,"x8"],
                          x9=data[,"x9"], x10=data[,"x10"], x11=data[,"x11"], x12=data[,"x12"])
-  simuData[1:(sample.nobs*missing.percentage),  c(1:2)] <-NA
+  simuData[1:(sample.nobs*missing.percentage),  c(11:12)] <-NA
   simuData
 }
 
@@ -115,28 +115,28 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 
 
 
-sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_WM1 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_3 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 
-sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-
-fitMCAR_MinPat_20PerMiss_2VarMiss_WM1 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
-
-
-fitMCAR_MinPat_50PerMiss_2VarMiss_WM1 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-
-
-round(fitMCAR_MinPat_20PerMiss_2VarMiss_WM1,6) 
-
-round(fitMCAR_MinPat_50PerMiss_2VarMiss_WM1,6)
+sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_3 <- sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 
 
 
-save(sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_WM1, file="sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_WM1.RData")
-save(sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1, file="sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1.RData")
-save(fitMCAR_MinPat_20PerMiss_2VarMiss_WM1, file="fitMCAR_MinPat_20PerMiss_2VarMiss_WM1.RData")
-save(fitMCAR_MinPat_50PerMiss_2VarMiss_WM1, file="fitMCAR_MinPat_50PerMiss_2VarMiss_WM1.RData")
+fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_3 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+
+
+fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3 <- fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
+
+
+round(fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_3,6) 
+
+round(fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3,6)
+
+
+
+save(sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_3, file="sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_CR1_3.RData")
+save(sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1, file="sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_3.RData")
+save(fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_3, file="fitMCAR_MinPat_20PerMiss_2VarMiss_CR1_3.RData")
+save(fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3, file="fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3.RData")
 
 
 
