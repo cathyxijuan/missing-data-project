@@ -1,6 +1,6 @@
 library(lavaan)
 
-#DP= misfit and missing are in different place 
+#misfit and missing are in different place and same place
 
 fitted.mod <- '     
 f1 =~ NA*x1 + x2 + x3 +x4 + x5 + x6
@@ -32,7 +32,7 @@ x12 ~~ .51*x12
 
 
 
-##place of misfit and place of missing are different; 0 factor correlation 
+## 0 factor correlation 
 
 pop.mod2.1 <- '    
 f1 =~ .7*x1 + .7*x2 + .7*x3 +.7*x4 + .7*x5 + .7*x6 
@@ -52,8 +52,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x3 ~~0.1*x4
-x5 ~~0.1*x6
+x7 ~~ 0.1*x8
+x9 ~~ 0.1*x10
 '
 
 pop.mod2.2 <- '    
@@ -74,8 +74,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.2*x6
-x3 ~~0.2*x4
+x7 ~~ 0.2*x8
+x9 ~~ 0.2*x10
 '
 
 pop.mod2.3 <- '    
@@ -96,8 +96,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.3*x6
-x3~~0.3*x4
+x7 ~~ 0.3*x8
+x9 ~~ 0.3*x10
 '
 
 pop.mod2.4 <- '    
@@ -118,8 +118,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.4*x6
-x3 ~~0.4*x4
+x7 ~~ 0.4*x8
+x9 ~~ 0.4*x10
 '
 
 
@@ -129,7 +129,7 @@ x3 ~~0.4*x4
 
 
 
-##place of misfit and place of missing are different; 0.4 factor correlation 
+## 0.4 factor correlation 
 
 
 pop.mod3.1 <- '    
@@ -150,8 +150,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.1*x6
-x3 ~~0.1*x4
+x9 ~~ 0.1*x10
+x7 ~~ 0.1*x8
 '
 
 pop.mod3.2 <- '    
@@ -172,8 +172,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.2*x6
-x3~~0.2*x4
+x7 ~~ 0.2*x8
+x9 ~~ 0.2*x10
 '
 
 pop.mod3.3 <- '    
@@ -194,8 +194,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.3*x6
-x3 ~~0.3*x4
+x7 ~~ 0.3*x8
+x9 ~~ 0.3*x10
 '
 
 pop.mod3.4 <- '    
@@ -216,15 +216,15 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.4*x6
-x3~~0.4*x4
+x7 ~~ 0.4*x8
+x9 ~~ 0.4*x10
 '
 
 
 
 
 
-##place of misfit and place of missing are different; 0.8 factor correlation 
+##0.8 factor correlation 
 
 
 pop.mod4.1 <- '    
@@ -245,8 +245,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.1*x6
-x3 ~~0.1*x4
+x7 ~~ 0.1*x8
+x9 ~~ 0.1*x10
 '
 
 pop.mod4.2 <- '    
@@ -267,8 +267,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5~~ 0.2*x6
-x3 ~~0.2*x4
+x7 ~~ 0.2*x8
+x9 ~~ 0.2*x10
 '
 
 pop.mod4.3 <- '    
@@ -289,8 +289,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.3*x6
-x3 ~~0.3*x4
+x7 ~~ 0.3*x8
+x9 ~~ 0.3*x10
 '
 
 pop.mod4.4 <- '    
@@ -311,8 +311,8 @@ x9 ~~  .51*x9
 x10 ~~  .51*x10
 x11 ~~  .51*x11
 x12 ~~ .51*x12
-x5 ~~ 0.4*x6
-x3 ~~0.4*x4
+x7 ~~ 0.4*x8
+x9 ~~ 0.4*x10
 '
 
 
