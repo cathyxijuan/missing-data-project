@@ -338,7 +338,7 @@ pop.mod <- list( pop.mod1,
 # sigma_CR1_3 <-sigma
 # 
 # save(fitNoMissing_CR1_3, file="fitNoMissing_CR1_3.RData")
-# save(sigmaHat_CR1_3 , file="sigmaHat_CR1_3 .RData")
+# save(sigmaHat_CR1_3 , file="sigmaHat_CR1_3.RData")
 # save(sigma_CR1_3 , file="sigma_CR1_3.RData")
 
 
