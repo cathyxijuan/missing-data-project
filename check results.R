@@ -14,13 +14,20 @@ load("sigma_CR1_1.RData")
 load("sigmaHat_CR1_1.RData")
 load("sigma_CR1_3.RData")
 load("sigmaHat_CR1_3.RData")
+load("sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_3.RData")
+load("fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3.RData")
+
 
 
 sigma_CR1_1
-sigmaHat_CR1_1
 
-sigma_CR1_3
-sigmaHat_CR1_3
+round(sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_3[[4]],4)
+
+sigma_CR1_3[[4]]
+round(sigmaHat_CR1_3[[4]],4)
+round(sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_CR1_3[[4]],4)
+round(fitMCAR_MinPat_50PerMiss_2VarMiss_CR1_3,4)
+
 
 fitNoMissing_CR1_1
 fitNoMissing_CR1_2
