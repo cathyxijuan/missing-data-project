@@ -133,10 +133,10 @@ round(fitMCAR_MinPat_50PerMiss_2VarMiss_WM1,6)
 
 
 
-save(sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_WM1, file="sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_WM1.RData")
-save(sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1, file="sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1.RData")
-save(fitMCAR_MinPat_20PerMiss_2VarMiss_WM1, file="fitMCAR_MinPat_20PerMiss_2VarMiss_WM1.RData")
-save(fitMCAR_MinPat_50PerMiss_2VarMiss_WM1, file="fitMCAR_MinPat_50PerMiss_2VarMiss_WM1.RData")
+# save(sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_WM1, file="sigmaHat_MCAR_MinPat_20PerMiss_2VarMiss_WM1.RData")
+# save(sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1, file="sigmaHat_MCAR_MinPat_50PerMiss_2VarMiss_WM1.RData")
+# save(fitMCAR_MinPat_20PerMiss_2VarMiss_WM1, file="fitMCAR_MinPat_20PerMiss_2VarMiss_WM1.RData")
+# save(fitMCAR_MinPat_50PerMiss_2VarMiss_WM1, file="fitMCAR_MinPat_50PerMiss_2VarMiss_WM1.RData")
 
 
 
