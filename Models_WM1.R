@@ -120,32 +120,32 @@ x12 ~~ .51*x12
 
 pop.mod <- list(pop.mod1, pop.mod2,pop.mod3, pop.mod4, pop.mod5)
 
-sigma <-list()
-for(i in 1:length(pop.mod)){
-  fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
-  sigma[[i]]<- lavInspect(fit, "cov.ov")
-}
-
-sigma.hat <-list()
-
-for(i in 1:length(pop.mod)){
-
-  fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS")
-  sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
-}
-
-fit.indices.comp <-matrix( nrow = 0, ncol = 6)
-
-for(i in 1:length(pop.mod)){
-  simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
-  fit <- cfa(fitted.mod, data=simuData)
-  fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
-}
-round(fit.indices.comp,4)
-fitNoMissing_WM1 <- fit.indices.comp
-sigmaHat_WM1 <- sigma.hat
-sigma_WM1 <-sigma
-
-save(fitNoMissing_WM1, file="fitNoMissing_WM1.RData")
-save(sigmaHat_WM1 , file="sigmaHat_WM1.RData")
-save(sigma_WM1, file="sigma_WM1.RData")
+# sigma <-list()
+# for(i in 1:length(pop.mod)){
+#   fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
+#   sigma[[i]]<- lavInspect(fit, "cov.ov")
+# }
+# 
+# sigma.hat <-list()
+# 
+# for(i in 1:length(pop.mod)){
+# 
+#   fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS")
+#   sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
+# }
+# 
+# fit.indices.comp <-matrix( nrow = 0, ncol = 6)
+# 
+# for(i in 1:length(pop.mod)){
+#   simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
+#   fit <- cfa(fitted.mod, data=simuData)
+#   fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
+# }
+# round(fit.indices.comp,4)
+# fitNoMissing_WM1 <- fit.indices.comp
+# sigmaHat_WM1 <- sigma.hat
+# sigma_WM1 <-sigma
+# 
+# save(fitNoMissing_WM1, file="fitNoMissing_WM1.RData")
+# save(sigmaHat_WM1 , file="sigmaHat_WM1.RData")
+# save(sigma_WM1, file="sigma_WM1.RData")
