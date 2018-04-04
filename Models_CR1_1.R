@@ -1,4 +1,6 @@
 library(lavaan)
+source("functions.R")
+
 
 #misfit and missing are in different places; different factors
 
@@ -314,6 +316,8 @@ pop.mod <- list( pop.mod1,
                  pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4, 
                  pop.mod4.1, pop.mod4.2, pop.mod4.3, pop.mod4.4)
 
+
+
 # sigma <-list()
 #  for(i in 1:length(pop.mod)){
 #   fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
@@ -327,19 +331,29 @@ pop.mod <- list( pop.mod1,
 # fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS")
 #    sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
 #  }
-# 
-# fit.indices.comp <-matrix( nrow = 0, ncol = 6)
+# sigmaHat_CR1_1 <- sigma.hat
+# sigma_CR1_1 <-sigma
+# save(sigmaHat_CR1_1, file="sigmaHat_CR1_1.RData")
+# save(sigma_CR1_1, file="sigma_CR1_1.RData")
+
+
+
+
+
+# fit.indices.comp <-matrix( nrow = 0, ncol = 12)
 # 
 # for(i in 1:length(pop.mod)){
 #    simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
 #     fit <- cfa(fitted.mod, data=simuData)
-#     fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
+#     fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df", "chisq", "pvalue", "baseline.chisq", "baseline.df", "rmsea.ci.lower", "rmsea.ci.upper")])
 #    }
-# round(fit.indices.comp,4)
+# 
+# 
+# 
 # fitNoMissing_CR1_1  <- fit.indices.comp
-# sigmaHat_CR1_1 <- sigma.hat
-# sigma_CR1_1 <-sigma
+# rmsea_NoMissing_CR1_1 <- rmsea_table(fitNoMissing_CR1_1)
+# cfi_NoMissing_CR1_1 <- cfi_table(fitNoMissing_CR1_1)
+# fitNoMissingShort_CR1_1 <- list(rmsea=rmsea_NoMissing_CR1_1, cfi=cfi_NoMissing_CR1_1 )
 # 
 # save(fitNoMissing_CR1_1 , file="fitNoMissing_CR1_1.RData")
-# save(sigmaHat_CR1_1, file="sigmaHat_CR1_1.RData")
-# save(sigma_CR1_1, file="sigma_CR1_1.RData")
+# save(fitNoMissingShort_CR1_1 , file="fitNoMissingShort_CR1_1.RData")

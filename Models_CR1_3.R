@@ -1,5 +1,5 @@
 library(lavaan)
-
+source("functions.R")
  # misfit and missing are in the same place
 
 fitted.mod <- '     
@@ -343,5 +343,21 @@ pop.mod <- list( pop.mod1,
 
 
 
-
+# fit.indices.comp <-matrix( nrow = 0, ncol = 12)
+# 
+# for(i in 1:length(pop.mod)){
+#   simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
+#   fit <- cfa(fitted.mod, data=simuData)
+#   fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df", "chisq", "pvalue", "baseline.chisq", "baseline.df", "rmsea.ci.lower", "rmsea.ci.upper")])
+# }
+# 
+# 
+# 
+# fitNoMissing_CR1_3  <- fit.indices.comp
+# rmsea_NoMissing_CR1_3 <- rmsea_table(fitNoMissing_CR1_3)
+# cfi_NoMissing_CR1_3 <- cfi_table(fitNoMissing_CR1_3)
+# fitNoMissingShort_CR1_3 <- list(rmsea=rmsea_NoMissing_CR1_3, cfi=cfi_NoMissing_CR1_3 )
+# 
+# save(fitNoMissing_CR1_3 , file="fitNoMissing_CR1_3.RData")
+# save(fitNoMissingShort_CR1_3 , file="fitNoMissingShort_CR1_3.RData")
 
