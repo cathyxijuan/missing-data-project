@@ -1,4 +1,5 @@
 library(lavaan)
+source("functions.R")
 
 #the misfit is in the connection between the missing and nonmissing variables. 
 
@@ -9,7 +10,7 @@ f1 ~~ 1*f1
 
 
 
-pop.mod1 <- '     
+pop.mod5 <- '     
 f1 =~ .7*x1 + .7*x2 + .7*x3 +.7*x4 + .7*x5 + .7*x6
 f2 =~ .7*x7 + .7*x8 + .7*x9 +.7*x10 + .7*x11 + .7*x12
 f1 ~~ 0.2*f2
@@ -30,7 +31,7 @@ x12 ~~ .51*x12
 '
 
 
-pop.mod2 <- '     
+pop.mod4 <- '     
 f1 =~ .7*x1 + .7*x2 + .7*x3 +.7*x4 + .7*x5 + .7*x6
 f2 =~ .7*x7 + .7*x8 + .7*x9 +.7*x10 + .7*x11 + .7*x12
 f1 ~~ 0.4*f2
@@ -71,7 +72,7 @@ x11 ~~ .51*x11
 x12 ~~ .51*x12
 '
 
-pop.mod4 <- '     
+pop.mod2 <- '     
 f1 =~ .7*x1 + .7*x2 + .7*x3 +.7*x4 + .7*x5 + .7*x6
 f2 =~ .7*x7 + .7*x8 + .7*x9 +.7*x10 + .7*x11 + .7*x12
 f1 ~~ 0.8*f2
@@ -92,7 +93,7 @@ x12 ~~ .51*x12
 '
 
 
-pop.mod5 <- '     
+pop.mod1 <- '     
 f1 =~ .7*x1 + .7*x2 + .7*x3 +.7*x4 + .7*x5 + .7*x6
 f2 =~ .7*x7 + .7*x8 + .7*x9 +.7*x10 + .7*x11 + .7*x12
 f1 ~~ 1*f2
