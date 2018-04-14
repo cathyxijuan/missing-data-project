@@ -3,7 +3,7 @@ library(simsem)
 
 
 
-source("Models_CR2_2.R")
+source("Models_CR2_3.R")
 
 ##FOR FOUR MISSING VARIABLES
 
@@ -171,37 +171,37 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 
 
 
-sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2 <- 
+sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_3 <- 
    sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
-sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2 <- 
+sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_3 <- 
    sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-# fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_2 <- 
+# fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_3 <- 
 #   fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
-# fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_2 <- 
+# fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_3 <- 
 #   fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
-# round(fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_2,6) 
-# round(fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_2,6)
+# round(fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_3,6) 
+# round(fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_3,6)
 # 
-save(sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2.RData")
-save(sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2.RData")
-# save(fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_2, file="fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_2.RData")
-# save(fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_2, file="fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_2.RData")
+save(sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_3, file="sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_3.RData")
+save(sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_3, file="sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_3.RData")
+# save(fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_3, file="fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_3.RData")
+# save(fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_3, file="fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_3.RData")
 
 
 
-sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_2 <- 
+sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_3 <- 
   sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
-sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_2 <- 
+sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_3 <- 
   sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
-# fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2 <- 
+# fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_3 <- 
 #   fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
-# fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2 <- 
+# fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_3 <- 
 #   fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
-# round(fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2,6) 
-# round(fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2,6)
+# round(fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_3,6) 
+# round(fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_3,6)
 
-save(sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_2.RData")
-save(sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_2.RData")
-# save(fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2, file="fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2.RData")
-# save(fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2, file="fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2.RData")
+save(sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_3, file="sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_3.RData")
+save(sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_3, file="sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_3.RData")
+# save(fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_3, file="fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_3.RData")
+# save(fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_3, file="fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_3.RData")
 

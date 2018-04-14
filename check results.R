@@ -84,10 +84,61 @@ fitNoMissingShort_CR1_1
 fitMCAR_Short_CR1_1[1:8]
 fitMAR_Linear_Short_CR1_1[1:8]
 
+fitNoMissingShort_CR1_1
+Map(function(x) x[11:15,], 
+    fitMCAR_Short_CR1_1[9:16])
+Map(function(x) x[11:15,], 
+    fitMAR_Linear_Short_CR1_1[9:16])
 
 fitNoMissingShort_CR1_3
-Map(function(x) x[6:10,], fitMCAR_Short_CR1_1[1:8])
-Map(function(x) x[6:10,], fitMAR_Linear_Short_CR1_3[1:8])
+Map(function(x) x[11:15,], 
+    fitMCAR_Short_CR1_3[9:16])
+Map(function(x) x[11:15,], 
+    fitMAR_Linear_Short_CR1_3[9:16])
+
+
+fitNoMissingShort_CR1_3
+Map(function(x) x[11:15,], fitMCAR_Short_CR1_3[1:8])
+Map(function(x) x[11:15,], fitMAR_Linear_Short_CR1_3[1:8])
+
+
+fitNoMissingShort_WM1
+fitMCAR_Short_WM1
+fitMAR_Linear_Short_WM1
+
+
+fitNoMissingShort_CR2_1
+Map(function(x) x[11:15,], 
+    fitMCAR_Short_CR2_1[9:16])
+Map(function(x) x[11:15,], 
+    fitMAR_Linear_Short_CR2_1[9:16])
+
+fitNoMissingShort_CR2_2
+Map(function(x) x[11:15,], fitMCAR_Short_CR2_2[1:8])
+Map(function(x) x[11:15,], fitMAR_Linear_Short_CR2_2[1:8])
+
+fitNoMissingShort_CR2_2
+Map(function(x) x[11:15,],
+    fitMCAR_Short_CR2_2[9:16])
+Map(function(x) x[11:15,],
+    fitMAR_Linear_Short_CR2_2[9:16])
+
+fitNoMissingShort_CR2_3
+Map(function(x) x[11:15,], 
+    fitMCAR_Short_CR2_3[9:16])
+Map(function(x) x[11:15,], 
+    fitMAR_Linear_Short_CR2_3[9:16])
+
+
+
+fitNoMissingShort_CR2_3
+Map(function(x) x[11:15,], fitMCAR_Short_CR2_3[1:8])
+Map(function(x) x[11:15,], fitMAR_Linear_Short_CR2_3[1:8])
+
+
+
+
+
 
 
 
@@ -117,10 +168,5 @@ round(fitMCAR_CR1_3[[2]],6)
 #why did the fit get better? Is it because of the equation? or is it because it has an implied matrix that is closer to the pop matrix?
 
 
-fitNoMissingShort_CR1_2[[1]]
-fitMCAR_Short_CR1_2[1:8]
-fitMAR_Linear_Short_CR1_2[1:8]
-for (i in 1:8) {print(fitMAR_Linear_Short_CR1_2[[i]][,1])}
 
-for (i in fitMAR_Linear_Short_CR1_2[1:8]) {print(i[,1])}
 
