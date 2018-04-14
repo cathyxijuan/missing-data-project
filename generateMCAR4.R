@@ -1,10 +1,11 @@
 library(lavaan)
 library(simsem)
 
+
+
 source("Models_CR2_2.R")
 
-
-
+##FOR FOUR MISSING VARIABLES
 
 #purpose: create missing data on x1,  x2, x3，x4.
 #Argument:
@@ -37,7 +38,7 @@ MCARMinPattern <- function(model, sample.nobs=1000000,  missing.percentage){
 #sample.nobs: numeric; sample size without missing data
 #missing.percentage: numeric; a proportion of missing data
 #missing.percentage: vector specifying which columns are missing
-MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage=.5){
+MCARMaxPattern2 <- function(model, sample.nobs=1000000,  missing.percentage=.5){
   missing.percentage <- missing.percentage
   data <- simulateData(model, sample.nobs=sample.nobs, seed=111)
   simuData <- data.frame(x1=data[,"x1"], x2=data[,"x2"], x3=data[,"x3"], x4=data[,"x4"],
@@ -80,7 +81,7 @@ MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage=.5){
 #sample.nobs: numeric; sample size without missing data
 #missing.percentage: numeric; a proportion of missing data
 #missing.percentage: vector specifying which columns are missing
-MCARMaxPattern2 <- function(model, sample.nobs=1000000,  missing.percentage=.5){
+MCARMaxPattern <- function(model, sample.nobs=1000000,  missing.percentage=.5){
   missing.percentage <- missing.percentage
   num.missing.var <- 4
   data <- simulateData(model, sample.nobs=sample.nobs, seed=111)
@@ -106,9 +107,6 @@ MCARMaxPattern2 <- function(model, sample.nobs=1000000,  missing.percentage=.5){
   simuData[(sample.nobs*perc.mis.per.chunk*14+1):(sample.nobs*perc.mis.per.chunk*15), 9:12] <-NA
   simuData
 }
-
-
-
 
 
 
@@ -173,10 +171,10 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 
 
 
-# sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2 <- 
-#   sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
-# sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2 <- 
-#   sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
+sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2 <- 
+   sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
+sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2 <- 
+   sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "min")
 # fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_2 <- 
 #   fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "min")
 # fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_2 <- 
@@ -184,8 +182,8 @@ sigma.hat.MCAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  m
 # round(fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_2,6) 
 # round(fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_2,6)
 # 
-# save(sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2.RData")
-# save(sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2.RData")
+save(sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MinPat_20PerMiss_4VarMiss_CR2_2.RData")
+save(sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MinPat_50PerMiss_4VarMiss_CR2_2.RData")
 # save(fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_2, file="fitMCAR_MinPat_20PerMiss_4VarMiss_CR2_2.RData")
 # save(fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_2, file="fitMCAR_MinPat_50PerMiss_4VarMiss_CR2_2.RData")
 
@@ -195,15 +193,15 @@ sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_2 <-
   sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
 sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_2 <- 
   sigma.hat.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
-fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2 <- 
-  fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
-fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2 <- 
-  fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
-round(fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2,6) 
-round(fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2,6)
+# fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2 <- 
+#   fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "max")
+# fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2 <- 
+#   fit.ind.matrix.MCAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "max")
+# round(fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2,6) 
+# round(fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2,6)
 
-# save(sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_2.RData")
-# save(sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_2.RData")
+save(sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MaxPat_20PerMiss_4VarMiss_CR2_2.RData")
+save(sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_2, file="sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_2.RData")
 # save(fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2, file="fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_2.RData")
 # save(fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2, file="fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_2.RData")
 
