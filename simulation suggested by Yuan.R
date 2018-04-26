@@ -122,7 +122,7 @@ fmin.incomplete/2
 
 
 
-# in bollen's book GOOD EXAMPLE FOR PLACE OF MISFIT AND PLACE OF MISSING ARE DIFFERENT
+# in bollen's book GOOD EXAMPLE FOR PLACE OF MISFIT AND PLACE OF MISSING ARE the same
 
 pop.mod <- '   
 y~~ 1*y
@@ -141,7 +141,7 @@ sigma<- cov(simuData)
 fit<- sem(fit.mod, data=simuData, missing="fiml", mimic="EQS")
 summary(fit)
 lavInspect(fit, "cov.ov")
-lavInspect(fit, "fit")["cfi"]
+lavInspect(fit, "fit")
 names(simuData)
 simuData[1:(sample.nobs*missing.percentage),  1] <-NA
 
@@ -323,7 +323,7 @@ y~~1*y
 x~~.5*x"
 
 sample.nobs=1000000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-missing.percentage=0.5
+missing.percentage=0.2
 simuData<- simulateData(pop.mod , sample.nobs=sample.nobs,seed=111)
 sigma<- cov(simuData)
 
@@ -355,7 +355,7 @@ y~~.5*y
 x~~2*x"
 
 sample.nobs=1000000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-missing.percentage=0.5
+missing.percentage=0.2
 simuData<- simulateData(pop.mod , sample.nobs=sample.nobs,seed=111)
 sigma<- cov(simuData)
 
@@ -377,16 +377,16 @@ lavInspect(fitmis, "fit")
 pop.mod <- '     
 y~~ 1*y
 x~~2*x
-x~~0.5*y
+x~~0*y
 '
 
 fit.mod <- "
-y~~0*x
+y~~0.5*x
 y~~1*y
 x~~2*x"
 
 sample.nobs=1000000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-missing.percentage=0.5
+missing.percentage=0.2
 simuData<- simulateData(pop.mod , sample.nobs=sample.nobs,seed=111)
 sigma<- cov(simuData)
 
@@ -401,8 +401,7 @@ fitmis<- sem(fit.mod, data=simuData, missing="fiml", mimic="EQS")
 summary(fitmis)
 lavInspect(fitmis, "cov.ov")
 lavInspect(fitmis, "fit")
-
-
+0.077/2
 
 
 
@@ -529,6 +528,39 @@ lavInspect(fitmis, "fit")
 
 
 
+##Missing on the connection
+pop.mod <- '     
+y~~ 1*y
+x~~2*x
+x~~0*y
+'
+
+fit.mod <- "
+y~~.5*x
+y~~1*y
+x~~2*x"
+
+sample.nobs=1000000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+missing.percentage=0.5
+simuData<- simulateData(pop.mod , sample.nobs=sample.nobs,seed=111)
+sigma<- cov(simuData)
+
+fit<- sem(fit.mod, data=simuData, missing="fiml", mimic="EQS")
+summary(fit)
+lavInspect(fit, "cov.ov")
+lavInspect(fit, "fit")
+
+simuData[1:(sample.nobs*missing.percentage),  1] <-NA  #MAR AND MCAR GAVE THE SAME RESULTS Í
+simuData<- simulateData(pop.mod , sample.nobs=sample.nobs,seed=111)
+simuData[simuData[,2] <0,1] <-NA
+
+fitmis<- sem(fit.mod, data=simuData, missing="fiml", mimic="EQS")
+summary(fitmis)
+lavInspect(fitmis, "cov.ov")
+lavInspect(fitmis, "fit")
+
+
+
 
 #Misfit on the connection. compare MCAR and MAR
 pop.mod <- '     
@@ -601,7 +633,7 @@ sigma2 <- sigma[2:p, 2:p]
 
 
 mu_hat1 <- c(mu_truc1[1],  0.000) 
-mu_hat2 <-  rep(0,1)
+mu_hat2 <-  0
 
 p11 <- log(det(sigma_hat1%*%solve(sigma1)))
 

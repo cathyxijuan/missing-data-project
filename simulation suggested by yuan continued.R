@@ -95,6 +95,6 @@ F_total <- (1-percentage.missing)*F_1+(percentage.missing)*F_2
 F_total
 F_true 
 
-
+F_total/2
 
 
