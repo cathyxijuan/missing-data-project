@@ -1,11 +1,13 @@
 library(lavaan)
-source("Models_CR.R")
+source("functions.R")
+source("Models_CR2_2.R")
 
 ##Two missing variables
 
 #strong dependency
 
-#Usage: FOR THIS RESEARCH ONLY. There need to be 12 variables. Creating missing data on x11 and x12.
+#Usage: FOR THIS RESEARCH ONLY. There need to be 12 variables. 
+#       Creating missing data on x11 and x12. Strong dependence:missing of x11 depends on x7; missing of x12 depends on x8
 #Argument:
 #model: lavaan defined population model
 #sample.nobs: numeric; sample size without missing data
@@ -18,17 +20,22 @@ MARStrong <- function(model, sample.nobs=1000000,  missing.percentage=0.5){
   
   cutoff<- qnorm(missing.percentage, lower.tail = F)
   
-  for(i in 0:2){
-    simuData[simuData[,4+i] > cutoff,1+i] <- NA
-    simuData[simuData[,10+i] > cutoff,7+i] <- NA
-  }
+  simuData[simuData[,7] > cutoff,11] <- NA
+  simuData[simuData[,8] > cutoff,12] <- NA
+ 
   simuData
 }
+
+
+
+
+
 
 
 #weak dependency
 
 #Usage: FOR THIS RESEARCH ONLY. There need to be 12 variables. 
+#       Creating missing data on x11 and x12. Weak dependence:missing of x11 depends on x7; missing of x12 depends on x8. 75% of data beyond a cutoff are eliminated.
 #Argument:
 #model: lavaan defined population model
 #sample.nobs: numeric; sample size without missing data
@@ -40,23 +47,24 @@ MARWeak <- function(model, sample.nobs=1000000,  missing.percentage=0.5){
                          x9=data[,"x9"], x10=data[,"x10"], x11=data[,"x11"], x12=data[,"x12"])
   
   cutoff<- qnorm(missing.percentage, lower.tail = F)
-  for(i in 0:2){
-    ind <- which(simuData[,4+i] > cutoff)
-    keep.log <- as.logical(sample(0:1,length(ind),replace=T, prob=c(0.25, 0.75))) #1=delete
-    row.keep <- ind[keep.log]
-    ind2 <- which(simuData[,4+i] < cutoff)
-    keep.log2 <- as.logical(sample(0:1,length(ind2),replace=T, prob=c(0.75, 0.25))) #1=delete
-    row.keep2 <- ind2[keep.log2]
-    simuData[c(row.keep, row.keep2),1+i] <-NA ##Note the rows that are kept got deleted. So it really should be called row.delete.
-    
-    ind <- which(simuData[,10+i] > cutoff)
-    keep.log <- as.logical(sample(0:1,length(ind),replace=T, prob=c(0.25, 0.75))) #1=delete
-    row.keep <- ind[keep.log]
-    ind2 <- which(simuData[,10+i] < cutoff)
-    keep.log2 <- as.logical(sample(0:1,length(ind2),replace=T, prob=c(0.75, 0.25))) #1=delete
-    row.keep2 <- ind2[keep.log2]
-    simuData[c(row.keep, row.keep2),7+i] <-NA
-  }
+#create missing for x11
+  ind <- which(simuData[,7] > cutoff)
+  keep.log <- as.logical(sample(0:1,length(ind),replace=T, prob=c(0.25, 0.75))) #1=delete
+  row.keep <- ind[keep.log]
+  ind2 <- which(simuData[,7] < cutoff)
+  keep.log2 <- as.logical(sample(0:1,length(ind2),replace=T, prob=c(0.75, 0.25))) #1=delete
+  row.keep2 <- ind2[keep.log2]
+  simuData[c(row.keep, row.keep2),11] <-NA ##Note the rows that are kept got deleted. So it really should be called row.delete.
+
+#create missing for x12
+  ind <- which(simuData[,8] > cutoff)
+  keep.log <- as.logical(sample(0:1,length(ind),replace=T, prob=c(0.25, 0.75))) #1=delete
+  row.keep <- ind[keep.log]
+  ind2 <- which(simuData[,8] < cutoff)
+  keep.log2 <- as.logical(sample(0:1,length(ind2),replace=T, prob=c(0.75, 0.25))) #1=delete
+  row.keep2 <- ind2[keep.log2]
+  simuData[c(row.keep, row.keep2),12] <-NA
+  
   simuData
 }
 
@@ -70,39 +78,78 @@ MARWeak <- function(model, sample.nobs=1000000,  missing.percentage=0.5){
 #missing.percentage: vector specifying which columns are missing
 #missing.type: a character: "strong" or "weak"
 fit.ind.matrix.MAR <- function(pop.model.list, fitted.mod, sample.nobs=1000000,  missing.percentage, missing.type){
-  fit.indices.MAR <-matrix( nrow = 0, ncol = 6)
+  fit.indices.MAR <-matrix( nrow = 0, ncol = 12)
   
   for(i in 1:length(pop.model.list)){
     if(missing.type=="strong"){
       simuData <- MARStrong(pop.model.list[[i]], sample.nobs, missing.percentage)
     } else {  simuData <- MARWeak(pop.model.list[[i]], sample.nobs, missing.percentage)}
     fit <- cfa(fitted.mod, data=simuData, missing="fiml", mimic="EQS")
-    fit.indices.MAR<- rbind(fit.indices.MAR, lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
+    fit.indices.MAR<- rbind(fit.indices.MAR, lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df", "chisq", "pvalue", "baseline.chisq", "baseline.df", "rmsea.ci.lower", "rmsea.ci.upper")])
+  }
+  fit.indices.MAR
+}
+
+
+#Usage: put sigma.hat for a list of models into a list
+
+#Arguments: same as above
+
+sigma.hat.MAR <- function(pop.model.list, fitted.mod, sample.nobs = 1000000,  missing.percentage, missing.type){
+  sigma.hat <-list()
+  
+  for(i in 1:length(pop.model.list)){
+    if(missing.type=="strong"){
+      simuData <- MARStrong(pop.model.list[[i]], sample.nobs, missing.percentage)
+    } else {  simuData <- MARWeak(pop.model.list[[i]], sample.nobs, missing.percentage)}
+    fit <- cfa(fitted.mod, data=simuData, missing="fiml", mimic="EQS")
+    sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
   }
   
-  fit.indices.MAR
+  sigma.hat
   
 }
 
 
 
-fit.MAR.STRONG50.CR <- fit.ind.matrix.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage=0.50, missing.type = "strong")
-fit.MAR.STRONG20.CR <-fit.ind.matrix.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage=0.20, missing.type = "strong")
 
 
-fit.MAR.WEAK20.CR <- fit.ind.matrix.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage=0.20, missing.type = "weak")
+sigmaHat_MAR_Strong_20PerMiss_2VarMiss_CR2_2 <-
+  sigma.hat.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "strong")
 
-fit.MAR.WEAK50.CR <- fit.ind.matrix.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage=0.50, missing.type = "weak")
+sigmaHat_MAR_Strong_50PerMiss_2VarMiss_CR2_2 <-
+  sigma.hat.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "strong")
+save(sigmaHat_MAR_Strong_20PerMiss_2VarMiss_CR2_2, file="sigmaHat_MAR_Strong_20PerMiss_2VarMiss_CR2_2.RData")
+save(sigmaHat_MAR_Strong_50PerMiss_2VarMiss_CR2_2, file="sigmaHat_MAR_Strong_50PerMiss_2VarMiss_CR2_2.RData")
+sigmaHat_MAR_Weak_20PerMiss_2VarMiss_CR2_2 <-
+  sigma.hat.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "weak")
 
-fit.MAR.STRONG50.CR
-fit.MAR.STRONG20.CR 
-fit.MAR.WEAK50.CR
-fit.MAR.WEAK20.CR
+sigmaHat_MAR_Weak_50PerMiss_2VarMiss_CR2_2 <-
+  sigma.hat.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "weak")
+save(sigmaHat_MAR_Weak_20PerMiss_2VarMiss_CR2_2, file="sigmaHat_MAR_Weak_20PerMiss_2VarMiss_CR2_2.RData")
+save(sigmaHat_MAR_Weak_50PerMiss_2VarMiss_CR2_2, file="sigmaHat_MAR_Weak_50PerMiss_2VarMiss_CR2_2.RData")
 
-
+# fitMAR_Strong_20PerMiss_2VarMiss_CR2_2 <-
+#   fit.ind.matrix.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "strong")
 # 
-# save(fit.MAR.STRONG50.CR,file= "fit.MAR.STRONG50.CR.RData")
-# save(fit.MAR.STRONG20.CR , file="fit.MAR.STRONG20.CR.RData")
-# save(fit.MAR.WEAK50.CR, file="fit.MAR.WEAK50.CR.RData")
-# save(fit.MAR.WEAK20.CR, file="fit.MAR.WEAK20.CR.RData")
- # 
+# fitMAR_Strong_50PerMiss_2VarMiss_CR2_2 <-
+#   fit.ind.matrix.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "strong")
+
+# fitMAR_Weak_20PerMiss_2VarMiss_CR2_2 <- 
+#   fit.ind.matrix.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "weak")
+# 
+# fitMAR_Weak_50PerMiss_2VarMiss_CR2_2 <- 
+#   fit.ind.matrix.MAR(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "weak")
+# 
+# round(fitMAR_Weak_20PerMiss_2VarMiss_CR2_2,6) 
+# 
+# round(fitMAR_Weak_50PerMiss_2VarMiss_CR2_2,6)
+
+
+# save(fitMAR_Strong_20PerMiss_2VarMiss_CR2_2, file="fitMAR_Strong_20PerMiss_2VarMiss_CR2_2.RData")
+# save(fitMAR_Strong_50PerMiss_2VarMiss_CR2_2, file="fitMAR_Strong_50PerMiss_2VarMiss_CR2_2.RData")
+# save(fitMAR_Weak_20PerMiss_2VarMiss_CR2_2, file="fitMAR_Weak_20PerMiss_2VarMiss_CR2_2.RData")
+# save(fitMAR_Weak_50PerMiss_2VarMiss_CR2_2, file="fitMAR_Weak_50PerMiss_2VarMiss_CR2_2.RData")
+
+
+

@@ -1,6 +1,6 @@
 library(lavaan)
 source("functions.R")
-source("Models_CR2_3.R")
+source("Models_CR2_2.R")
 
 
 #strong dependency
@@ -164,14 +164,14 @@ MARWeak_4Var <- function(model, sample.nobs=1000000,  missing.percentage=0.5){
 #missing.percentage: vector specifying which columns are missing
 #missing.type: a character: "strong" or "weak"
 fit.ind.matrix.MAR_4Var <- function(pop.model.list, fitted.mod, sample.nobs=1000000,  missing.percentage, missing.type){
-  fit.indices.MAR <-matrix( nrow = 0, ncol = 6)
+  fit.indices.MAR <-matrix( nrow = 0, ncol = 12)
   
   for(i in 1:length(pop.model.list)){
     if(missing.type=="strong"){
       simuData <- MARStrong_4Var(pop.model.list[[i]], sample.nobs, missing.percentage)
     } else {  simuData <- MARWeak_4Var(pop.model.list[[i]], sample.nobs, missing.percentage)}
     fit <- cfa(fitted.mod, data=simuData, missing="fiml", mimic="EQS")
-    fit.indices.MAR<- rbind(fit.indices.MAR, lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df")])
+    fit.indices.MAR<- rbind(fit.indices.MAR, lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df", "chisq", "pvalue", "baseline.chisq", "baseline.df", "rmsea.ci.lower", "rmsea.ci.upper")])
   }
   fit.indices.MAR
 }
@@ -180,28 +180,28 @@ fit.ind.matrix.MAR_4Var <- function(pop.model.list, fitted.mod, sample.nobs=1000
 
 
 
-fitMAR_Strong_20PerMiss_2VarMiss_CR2_3 <-
+fitMAR_Strong_20PerMiss_2VarMiss_CR2_2 <-
   fit.ind.matrix.MAR_2Var(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "strong")
 
-fitMAR_Strong_50PerMiss_2VarMiss_CR2_3 <-
+fitMAR_Strong_50PerMiss_2VarMiss_CR2_2 <-
   fit.ind.matrix.MAR_2Var(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "strong")
 
-fitMAR_Weak_20PerMiss_2VarMiss_CR2_3 <- 
+fitMAR_Weak_20PerMiss_2VarMiss_CR2_2 <- 
   fit.ind.matrix.MAR_2Var(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "weak")
 
-fitMAR_Weak_50PerMiss_2VarMiss_CR2_3 <- 
+fitMAR_Weak_50PerMiss_2VarMiss_CR2_2 <- 
   fit.ind.matrix.MAR_2Var(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "weak")
 
-fitMAR_Strong_20PerMiss_4VarMiss_CR2_3 <-
+fitMAR_Strong_20PerMiss_4VarMiss_CR2_2 <-
   fit.ind.matrix.MAR_4Var(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "strong")
 
-fitMAR_Strong_50PerMiss_4VarMiss_CR2_3 <-
+fitMAR_Strong_50PerMiss_4VarMiss_CR2_2 <-
   fit.ind.matrix.MAR_4Var(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "strong")
 
-fitMAR_Weak_20PerMiss_4VarMiss_CR2_3 <- 
+fitMAR_Weak_20PerMiss_4VarMiss_CR2_2 <- 
   fit.ind.matrix.MAR_4Var(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.20, missing.type = "weak")
 
-fitMAR_Weak_50PerMiss_4VarMiss_CR2_3 <- 
+fitMAR_Weak_50PerMiss_4VarMiss_CR2_2 <- 
   fit.ind.matrix.MAR_4Var(pop.model.list=pop.mod, fitted.mod=fitted.mod, missing.percentage = 0.50, missing.type = "weak")
 
 
@@ -209,56 +209,58 @@ fitMAR_Weak_50PerMiss_4VarMiss_CR2_3 <-
 
 
 
-fitMAR_CR2_3 <- list(Strong_20PerMiss_2VarMiss = fitMAR_Strong_20PerMiss_2VarMiss_CR2_3,
-                     Strong_50PerMiss_2VarMiss = fitMAR_Strong_50PerMiss_2VarMiss_CR2_3, 
-                     Weak_20PerMiss_2VarMiss = fitMAR_Weak_20PerMiss_2VarMiss_CR2_3,
-                     Weak_50PerMiss_2VarMiss = fitMAR_Weak_50PerMiss_2VarMiss_CR2_3,
-                     Strong_20PerMiss_4VarMiss = fitMAR_Strong_20PerMiss_4VarMiss_CR2_3,
-                     Strong_50PerMiss_4VarMiss = fitMAR_Strong_50PerMiss_4VarMiss_CR2_3,
-                     Weak_20PerMiss_4VarMiss = fitMAR_Weak_20PerMiss_4VarMiss_CR2_3,
-                     Weak_50PerMiss_4VarMiss = fitMAR_Weak_50PerMiss_4VarMiss_CR2_3) 
+fitMAR_Linear_CR2_2 <- list(Strong_20PerMiss_2VarMiss = fitMAR_Strong_20PerMiss_2VarMiss_CR2_2,
+                     Strong_50PerMiss_2VarMiss = fitMAR_Strong_50PerMiss_2VarMiss_CR2_2, 
+                     Weak_20PerMiss_2VarMiss = fitMAR_Weak_20PerMiss_2VarMiss_CR2_2,
+                     Weak_50PerMiss_2VarMiss = fitMAR_Weak_50PerMiss_2VarMiss_CR2_2,
+                     Strong_20PerMiss_4VarMiss = fitMAR_Strong_20PerMiss_4VarMiss_CR2_2,
+                     Strong_50PerMiss_4VarMiss = fitMAR_Strong_50PerMiss_4VarMiss_CR2_2,
+                     Weak_20PerMiss_4VarMiss = fitMAR_Weak_20PerMiss_4VarMiss_CR2_2,
+                     Weak_50PerMiss_4VarMiss = fitMAR_Weak_50PerMiss_4VarMiss_CR2_2) 
 
 
-round(fitMAR_CR2_3,6)
+fitMAR_Linear_CR2_2
 
 
-rmsea_MAR_Strong_20PerMiss_2VarMiss_CR2_3 = rmsea_table(fitMAR_Strong_20PerMiss_2VarMiss_CR2_3)
-rmsea_MAR_Strong_50PerMiss_2VarMiss_CR2_3 = rmsea_table(fitMAR_Strong_50PerMiss_2VarMiss_CR2_3) 
-rmsea_MAR_Weak_20PerMiss_2VarMiss_CR2_3 = rmsea_table(fitMAR_Weak_20PerMiss_2VarMiss_CR2_3)
-rmsea_MAR_Weak_50PerMiss_2VarMiss_CR2_3 = rmsea_table(fitMAR_Weak_50PerMiss_2VarMiss_CR2_3)
-rmsea_MAR_Strong_20PerMiss_4VarMiss_CR2_3 = rmsea_table(fitMAR_Strong_20PerMiss_4VarMiss_CR2_3)
-rmsea_MAR_Strong_50PerMiss_4VarMiss_CR2_3 = rmsea_table(fitMAR_Strong_50PerMiss_4VarMiss_CR2_3)
-rmsea_MAR_Weak_20PerMiss_4VarMiss_CR2_3 = rmsea_table(fitMAR_Weak_20PerMiss_4VarMiss_CR2_3)
-rmsea_MAR_Weak_50PerMiss_4VarMiss_CR2_3 = rmsea_table(fitMAR_Weak_50PerMiss_4VarMiss_CR2_3) 
-cfi_MAR_Strong_20PerMiss_2VarMiss_CR2_3 = cfi_table(fitMAR_Strong_20PerMiss_2VarMiss_CR2_3)
-cfi_MAR_Strong_50PerMiss_2VarMiss_CR2_3 = cfi_table(fitMAR_Strong_50PerMiss_2VarMiss_CR2_3) 
-cfi_MAR_Weak_20PerMiss_2VarMiss_CR2_3 = cfi_table(fitMAR_Weak_20PerMiss_2VarMiss_CR2_3)
-cfi_MAR_Weak_50PerMiss_2VarMiss_CR2_3 = cfi_table(fitMAR_Weak_50PerMiss_2VarMiss_CR2_3)
-cfi_MAR_Strong_20PerMiss_4VarMiss_CR2_3 = cfi_table(fitMAR_Strong_20PerMiss_4VarMiss_CR2_3)
-cfi_MAR_Strong_50PerMiss_4VarMiss_CR2_3 = cfi_table(fitMAR_Strong_50PerMiss_4VarMiss_CR2_3)
-cfi_MAR_Weak_20PerMiss_4VarMiss_CR2_3 = cfi_table(fitMAR_Weak_20PerMiss_4VarMiss_CR2_3)
-cfi_MAR_Weak_50PerMiss_4VarMiss_CR2_3 = cfi_table(fitMAR_Weak_50PerMiss_4VarMiss_CR2_3) 
-
-
-
-fitMAR_Short_CR2_3 <-list(rmsea_Strong_20PerMiss_2VarMiss = rmsea_MAR_Strong_20PerMiss_2VarMiss_CR2_3, 
-                          rmsea_Strong_50PerMiss_2VarMiss = rmsea_MAR_Strong_50PerMiss_2VarMiss_CR2_3,
-                          rmsea_Weak_20PerMiss_2VarMiss = rmsea_MAR_Weak_20PerMiss_2VarMiss_CR2_3,
-                          rmsea_Weak_50PerMiss_2VarMiss = rmsea_MAR_Weak_50PerMiss_2VarMiss_CR2_3,
-                          rmsea_Strong_20PerMiss_4VarMiss = rmsea_MAR_Strong_20PerMiss_4VarMiss_CR2_3,
-                          rmsea_Strong_50PerMiss_4VarMiss = rmsea_MAR_Strong_50PerMiss_4VarMiss_CR2_3,
-                          rmsea_Weak_20PerMiss_4VarMiss = rmsea_MAR_Weak_20PerMiss_4VarMiss_CR2_3,
-                          rmsea_Weak_50PerMiss_4VarMiss = rmsea_MAR_Weak_50PerMiss_4VarMiss_CR2_3,
-                          cfi_Strong_20PerMiss_2VarMiss = cfi_MAR_Strong_20PerMiss_2VarMiss_CR2_3,
-                          cfi_Strong_50PerMiss_2VarMiss = cfi_MAR_Strong_50PerMiss_2VarMiss_CR2_3,
-                          cfi_Weak_20PerMiss_2VarMiss = cfi_MAR_Weak_20PerMiss_2VarMiss_CR2_3,
-                          cfi_Weak_50PerMiss_2VarMiss = cfi_MAR_Weak_50PerMiss_2VarMiss_CR2_3,
-                          cfi_Strong_20PerMiss_4VarMiss = cfi_MAR_Strong_20PerMiss_4VarMiss_CR2_3,
-                          cfi_Strong_50PerMiss_4VarMiss = cfi_MAR_Strong_50PerMiss_4VarMiss_CR2_3,
-                          cfi_Weak_20PerMiss_4VarMiss = cfi_MAR_Weak_20PerMiss_4VarMiss_CR2_3,
-                          cfi_Weak_50PerMiss_4VarMiss = cfi_MAR_Weak_50PerMiss_4VarMiss_CR2_3)
+rmsea_MAR_Strong_20PerMiss_2VarMiss_CR2_2 = rmsea_table(fitMAR_Strong_20PerMiss_2VarMiss_CR2_2)
+rmsea_MAR_Strong_50PerMiss_2VarMiss_CR2_2 = rmsea_table(fitMAR_Strong_50PerMiss_2VarMiss_CR2_2) 
+rmsea_MAR_Weak_20PerMiss_2VarMiss_CR2_2 = rmsea_table(fitMAR_Weak_20PerMiss_2VarMiss_CR2_2)
+rmsea_MAR_Weak_50PerMiss_2VarMiss_CR2_2 = rmsea_table(fitMAR_Weak_50PerMiss_2VarMiss_CR2_2)
+rmsea_MAR_Strong_20PerMiss_4VarMiss_CR2_2 = rmsea_table(fitMAR_Strong_20PerMiss_4VarMiss_CR2_2)
+rmsea_MAR_Strong_50PerMiss_4VarMiss_CR2_2 = rmsea_table(fitMAR_Strong_50PerMiss_4VarMiss_CR2_2)
+rmsea_MAR_Weak_20PerMiss_4VarMiss_CR2_2 = rmsea_table(fitMAR_Weak_20PerMiss_4VarMiss_CR2_2)
+rmsea_MAR_Weak_50PerMiss_4VarMiss_CR2_2 = rmsea_table(fitMAR_Weak_50PerMiss_4VarMiss_CR2_2) 
+cfi_MAR_Strong_20PerMiss_2VarMiss_CR2_2 = cfi_table(fitMAR_Strong_20PerMiss_2VarMiss_CR2_2)
+cfi_MAR_Strong_50PerMiss_2VarMiss_CR2_2 = cfi_table(fitMAR_Strong_50PerMiss_2VarMiss_CR2_2) 
+cfi_MAR_Weak_20PerMiss_2VarMiss_CR2_2 = cfi_table(fitMAR_Weak_20PerMiss_2VarMiss_CR2_2)
+cfi_MAR_Weak_50PerMiss_2VarMiss_CR2_2 = cfi_table(fitMAR_Weak_50PerMiss_2VarMiss_CR2_2)
+cfi_MAR_Strong_20PerMiss_4VarMiss_CR2_2 = cfi_table(fitMAR_Strong_20PerMiss_4VarMiss_CR2_2)
+cfi_MAR_Strong_50PerMiss_4VarMiss_CR2_2 = cfi_table(fitMAR_Strong_50PerMiss_4VarMiss_CR2_2)
+cfi_MAR_Weak_20PerMiss_4VarMiss_CR2_2 = cfi_table(fitMAR_Weak_20PerMiss_4VarMiss_CR2_2)
+cfi_MAR_Weak_50PerMiss_4VarMiss_CR2_2 = cfi_table(fitMAR_Weak_50PerMiss_4VarMiss_CR2_2) 
 
 
 
-save(fitMAR_CR2_3, file="fitMAR_CR2_3.RData")
-save(fitMAR_Short_CR2_3, file="fitMAR_Short_CR2_3.RData")
+fitMAR_Linear_Short_CR2_2 <-list(rmsea_Weak_20PerMiss_2VarMiss = rmsea_MAR_Weak_20PerMiss_2VarMiss_CR2_2, 
+                               rmsea_Weak_50PerMiss_2VarMiss = rmsea_MAR_Weak_50PerMiss_2VarMiss_CR2_2,
+                               rmsea_Strong_20PerMiss_2VarMiss = rmsea_MAR_Strong_20PerMiss_2VarMiss_CR2_2,
+                               rmsea_Strong_50PerMiss_2VarMiss = rmsea_MAR_Strong_50PerMiss_2VarMiss_CR2_2,
+                               rmsea_Weak_20PerMiss_4VarMiss = rmsea_MAR_Weak_20PerMiss_4VarMiss_CR2_2,
+                               rmsea_Weak_50PerMiss_4VarMiss = rmsea_MAR_Weak_50PerMiss_4VarMiss_CR2_2,
+                               rmsea_Strong_20PerMiss_4VarMiss = rmsea_MAR_Strong_20PerMiss_4VarMiss_CR2_2,
+                               rmsea_Strong_50PerMiss_4VarMiss = rmsea_MAR_Strong_50PerMiss_4VarMiss_CR2_2,
+                               cfi_Weak_20PerMiss_2VarMiss = cfi_MAR_Weak_20PerMiss_2VarMiss_CR2_2,
+                               cfi_Weak_50PerMiss_2VarMiss = cfi_MAR_Weak_50PerMiss_2VarMiss_CR2_2,
+                               cfi_Strong_20PerMiss_2VarMiss = cfi_MAR_Strong_20PerMiss_2VarMiss_CR2_2,
+                               cfi_Strong_50PerMiss_2VarMiss = cfi_MAR_Strong_50PerMiss_2VarMiss_CR2_2,
+                               cfi_Weak_20PerMiss_4VarMiss = cfi_MAR_Weak_20PerMiss_4VarMiss_CR2_2,
+                               cfi_Weak_50PerMiss_4VarMiss = cfi_MAR_Weak_50PerMiss_4VarMiss_CR2_2,
+                               cfi_Strong_20PerMiss_4VarMiss = cfi_MAR_Strong_20PerMiss_4VarMiss_CR2_2,
+                               cfi_Strong_50PerMiss_4VarMiss = cfi_MAR_Strong_50PerMiss_4VarMiss_CR2_2)
+fitMAR_Linear_Short_CR2_2 
+
+
+save(fitMAR_Linear_CR2_2, file="fitMAR_Linear_CR2_2.RData")
+save(fitMAR_Linear_Short_CR2_2, file="fitMAR_Linear_Short_CR2_2.RData")
+
+

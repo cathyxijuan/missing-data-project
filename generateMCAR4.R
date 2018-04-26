@@ -205,3 +205,6 @@ save(sigmaHat_MCAR_MaxPat_50PerMiss_4VarMiss_CR2_3, file="sigmaHat_MCAR_MaxPat_5
 # save(fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_3, file="fitMCAR_MaxPat_20PerMiss_4VarMiss_CR2_3.RData")
 # save(fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_3, file="fitMCAR_MaxPat_50PerMiss_4VarMiss_CR2_3.RData")
 
+
+
+0.4469/0.077
