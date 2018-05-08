@@ -7,17 +7,17 @@ library(reshape2)
 
 
 
-mc0 <- fitNoMissingShort_CR2_3[[2]][1:5,]
-mc20 <- fitMCAR_Short_CR2_3[[15]][1:5,]
-mc50 <- fitMCAR_Short_CR2_3[[16]][1:5,]
+mc0 <- fitNoMissingShort_CR2_3[[1]][1:5,]
+mc20 <- fitMCAR_Short_CR2_3[[7]][1:5,]
+mc50 <- fitMCAR_Short_CR2_3[[8]][1:5,]
 
-weak0 <- fitNoMissingShort_CR2_3[[2]][1:5,]
-weak20 <- fitMAR_Linear_Short_CR2_3[[13]][1:5,]
-weak50 <- fitMAR_Linear_Short_CR2_3[[14]][1:5,]
+weak0 <- fitNoMissingShort_CR2_3[[1]][1:5,]
+weak20 <- fitMAR_Linear_Short_CR2_3[[5]][1:5,]
+weak50 <- fitMAR_Linear_Short_CR2_3[[6]][1:5,]
 
-strong0 <- fitNoMissingShort_CR2_3[[2]][1:5,]
-strong20 <- fitMAR_Linear_Short_CR2_3[[15]][1:5,]
-strong50 <- fitMAR_Linear_Short_CR2_3[[16]][1:5,]
+strong0 <- fitNoMissingShort_CR2_3[[1]][1:5,]
+strong20 <- fitMAR_Linear_Short_CR2_3[[7]][1:5,]
+strong50 <- fitMAR_Linear_Short_CR2_3[[8]][1:5,]
 
 
 data <-rbind(mc0, mc20, mc50, weak0, weak20, weak50, strong0, strong20, strong50 )
@@ -26,7 +26,6 @@ data <-rbind(mc0, mc20, mc50, weak0, weak20, weak50, strong0, strong20, strong50
 
 perMiss <-rep( rep(c("0%", "20%", "50%"),each=5), 3)
 data <- as.data.frame(data, row.names = 1:nrow(data))
-data$CFI <- data$cfi
 data$perMiss<- perMiss 
 strength <- rep(c("  Zero Strength (MCAR)", " Weak Strength (MAR)", "Strong Strength (MAR)"), each=15)
 model <- rep(0:4, 9)
@@ -37,17 +36,17 @@ data$placeMiss <- rep(" Same Factors", nrow(data2))
 
 
 
-mc0 <- fitNoMissingShort_CR2_1[[2]][1:5,]
-mc20 <- fitMCAR_Short_CR2_1[[15]][1:5,]
-mc50 <- fitMCAR_Short_CR2_1[[16]][1:5,]
+mc0 <- fitNoMissingShort_CR2_1[[1]][1:5,]
+mc20 <- fitMCAR_Short_CR2_1[[1]][1:5,]
+mc50 <- fitMCAR_Short_CR2_1[[1]][1:5,]
 
-weak0 <- fitNoMissingShort_CR2_1[[2]][1:5,]
-weak20 <- fitMAR_Linear_Short_CR2_1[[13]][1:5,]
-weak50 <- fitMAR_Linear_Short_CR2_1[[14]][1:5,]
+weak0 <- fitNoMissingShort_CR2_1[[1]][1:5,]
+weak20 <- fitMAR_Linear_Short_CR2_1[[5]][1:5,]
+weak50 <- fitMAR_Linear_Short_CR2_1[[6]][1:5,]
 
-strong0 <- fitNoMissingShort_CR2_1[[2]][1:5,]
-strong20 <- fitMAR_Linear_Short_CR2_1[[15]][1:5,]
-strong50 <- fitMAR_Linear_Short_CR2_1[[16]][1:5,]
+strong0 <- fitNoMissingShort_CR2_1[[1]][1:5,]
+strong20 <- fitMAR_Linear_Short_CR2_1[[7]][1:5,]
+strong50 <- fitMAR_Linear_Short_CR2_1[[8]][1:5,]
 
 
 data2 <-rbind(mc0, mc20, mc50, weak0, weak20, weak50, strong0, strong20, strong50 )
@@ -56,7 +55,6 @@ data2 <-rbind(mc0, mc20, mc50, weak0, weak20, weak50, strong0, strong20, strong5
 
 perMiss <-rep( rep(c("0%", "20%", "50%"),each=5), 3)
 data2 <- as.data.frame(data2, row.names = 1:nrow(data2))
-data2$CFI <- data2$cfi
 data2$perMiss<- perMiss 
 strength <- rep(c("  Zero Strength (MCAR)", " Weak Strength (MAR)", "Strong Strength (MAR)"), each=15)
 model <- rep(0:4, 9)
@@ -64,20 +62,19 @@ data2$Strength<- strength
 data2$Model <- model
 data2$placeMiss <- rep(" Different Factor", nrow(data2))
 
-data2
 
 
-mc0 <- fitNoMissingShort_WM1[[2]][1:5,]
-mc20 <- fitMCAR_Short_WM1[[15]][1:5,]
-mc50 <- fitMCAR_Short_WM1[[16]][1:5,]
+mc0 <- fitNoMissingShort_WM1[[1]][1:5,]
+mc20 <- fitMCAR_Short_WM1[[7]][1:5,]
+mc50 <- fitMCAR_Short_WM1[[8]][1:5,]
 
-weak0 <- fitNoMissingShort_WM1[[2]][1:5,]
-weak20 <- fitMAR_Linear_Short_WM1[[13]][1:5,]
-weak50 <- fitMAR_Linear_Short_WM1[[14]][1:5,]
+weak0 <- fitNoMissingShort_WM1[[1]][1:5,]
+weak20 <- fitMAR_Linear_Short_WM1[[5]][1:5,]
+weak50 <- fitMAR_Linear_Short_WM1[[6]][1:5,]
 
-strong0 <- fitNoMissingShort_WM1[[2]][1:5,]
-strong20 <- fitMAR_Linear_Short_WM1[[15]][1:5,]
-strong50 <- fitMAR_Linear_Short_WM1[[16]][1:5,]
+strong0 <- fitNoMissingShort_WM1[[1]][1:5,]
+strong20 <- fitMAR_Linear_Short_WM1[[7]][1:5,]
+strong50 <- fitMAR_Linear_Short_WM1[[8]][1:5,]
 
 
 data3 <-rbind(mc0, mc20, mc50, weak0, weak20, weak50, strong0, strong20, strong50 )
@@ -86,7 +83,6 @@ data3 <-rbind(mc0, mc20, mc50, weak0, weak20, weak50, strong0, strong20, strong5
 
 perMiss <-rep( rep(c("0%", "20%", "50%"),each=5), 3)
 data3 <- as.data.frame(data3, row.names = 1:nrow(data3))
-data3$CFI <- data3$cfi
 data3$perMiss<- perMiss 
 strength <- rep(c("  Zero Strength (MCAR)", " Weak Strength (MAR)", "Strong Strength (MAR)"), each=15)
 model <- rep(0:4, 9)
@@ -95,8 +91,13 @@ data3$Model <- model
 data3$placeMiss <- rep("Connection", nrow(data3))
 
 datafinal <-rbind(data, data2, data3)
-datafinal$PercentMissing <- datafinal$perMiss
+datafinal$RMSEA <- datafinal$rmsea
+datafinal$PercentMissing<- datafinal$perMiss 
 
-ggplot(datafinal, aes(x=Model, y=CFI)) +geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
+head(data)
+head(data3)
+
+ggplot(datafinal, aes(x=Model, y=RMSEA)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
   geom_point(aes(color=PercentMissing))+facet_grid(Strength~placeMiss)
+
 

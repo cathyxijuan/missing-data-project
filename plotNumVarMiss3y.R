@@ -24,7 +24,7 @@ data <- rbind(df0,df20 ,df50,  sv0, sv20, sv50, c0, c20, c50)
 perMiss <-rep( rep(c("0%", "20%", "50%"),each=5), 3)
 data <- as.data.frame(data, row.names = 1:nrow(data))
 data$PercentMissing<- perMiss 
-placeMiss <- rep(c("Misfit and Missing on Different Factors", "Misfit and Missing on Same Factor", "Misfit on Factor Correlation"), each=15)
+placeMiss <- rep(c(" Different Factors", " Same Factor", "Connection"), each=15)
 model <- rep(0:4, 9)
 data$PlaceMiss<- placeMiss
 data$Model <- model
@@ -57,6 +57,12 @@ data2$NumMissVar <- rep("Four Variables with Missing", nrow(data2))
 #combine 
 datafinal <-rbind(data, data2)
 datafinal$Fmin <- datafinal$fmin
+datafinal$RMSEA <- datafinal$rmsea
 
-ggplot(datafinal, aes(x=Model, y=Fmin, colour=PercentMissing)) + geom_line(aes(group=PercentMissing)) + 
-  geom_point()+facet_grid(PlaceMiss~NumMissVar)+ scale_colour_discrete(name="Percent Missing")
+
+ggplot(datafinal, aes(x=Model, y=Fmin)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
+  geom_point(aes(color=PercentMissing))+facet_grid(PlaceMiss~NumMissVar)
+
+ggplot(datafinal, aes(x=Model, y=RMSEA)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
+  geom_point(aes(color=PercentMissing))+facet_grid(PlaceMiss~NumMissVar)
+

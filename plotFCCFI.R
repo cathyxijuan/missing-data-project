@@ -5,14 +5,14 @@ source("results.R")
 
 #zero correlation, min pattern, one CR
 #Factor correlation = 0 
-df0 <- fitNoMissingShort_CR1_1[[1]][1:5,]
-df20 <- fitMCAR_Short_CR1_1[[5]][1:5,]
-df50 <- fitMCAR_Short_CR1_1[[6]][1:5,]
+df0 <- fitNoMissingShort_CR1_1[[2]][1:5,]
+df20 <- fitMCAR_Short_CR1_1[[13]][1:5,]
+df50 <- fitMCAR_Short_CR1_1[[14]][1:5,]
 
 
-sv0 <- fitNoMissingShort_CR1_3[[1]][1:5,]
-sv20 <- fitMCAR_Short_CR1_3[[5]][1:5,]
-sv50 <- fitMCAR_Short_CR1_3[[6]][1:5,]
+sv0 <- fitNoMissingShort_CR1_3[[2]][1:5,]
+sv20 <- fitMCAR_Short_CR1_3[[13]][1:5,]
+sv50 <- fitMCAR_Short_CR1_3[[14]][1:5,]
 
 data <- rbind(df0,df20 ,df50, sv0, sv20, sv50 )
 
@@ -27,16 +27,16 @@ data$FC <- rep("Factor Correlation = 0", nrow(data))
 
 
 #Factor correlation = 0.4
-df02 <- fitNoMissingShort_CR1_1[[1]][6:10,]
-df202 <- fitMCAR_Short_CR1_1[[5]][6:10,]
-df502 <- fitMCAR_Short_CR1_1[[6]][6:10,]
+df02 <- fitNoMissingShort_CR1_1[[2]][6:10,]
+df202 <- fitMCAR_Short_CR1_1[[13]][6:10,]
+df502 <- fitMCAR_Short_CR1_1[[14]][6:10,]
 
 
 
 
-sv02 <- fitNoMissingShort_CR1_3[[1]][6:10,]
-sv202 <- fitMCAR_Short_CR1_3[[5]][6:10,]
-sv502 <- fitMCAR_Short_CR1_3[[6]][6:10,]
+sv02 <- fitNoMissingShort_CR1_3[[2]][6:10,]
+sv202 <- fitMCAR_Short_CR1_3[[13]][6:10,]
+sv502 <- fitMCAR_Short_CR1_3[[14]][6:10,]
 
 data2 <- rbind(df02,df202 ,df502,  sv02, sv202, sv502 )
 
@@ -51,16 +51,16 @@ data2$FC <- rep("Factor Correlation = 0.4", nrow(data2))
 #Factor Correlation - 0.8
 
 #Factor correlation = 0.8
-df02 <- fitNoMissingShort_CR1_1[[1]][11:15,]
-df202 <- fitMCAR_Short_CR1_1[[5]][11:15,]
-df502 <- fitMCAR_Short_CR1_1[[6]][11:15,]
+df02 <- fitNoMissingShort_CR1_1[[2]][11:15,]
+df202 <- fitMCAR_Short_CR1_1[[13]][11:15,]
+df502 <- fitMCAR_Short_CR1_1[[14]][11:15,]
 
 
 
 
-sv02 <- fitNoMissingShort_CR1_3[[1]][11:15,]
-sv202 <- fitMCAR_Short_CR1_3[[5]][11:15,]
-sv502 <- fitMCAR_Short_CR1_3[[6]][11:15,]
+sv02 <- fitNoMissingShort_CR1_3[[2]][11:15,]
+sv202 <- fitMCAR_Short_CR1_3[[13]][11:15,]
+sv502 <- fitMCAR_Short_CR1_3[[14]][11:15,]
 
 data3 <- rbind(df02,df202 ,df502,  sv02, sv202, sv502 )
 
@@ -72,12 +72,9 @@ data3$FC <- rep("Factor Correlation = 0.8", nrow(data3))
 
 #combine 
 datafinal <-rbind(data, data2, data3)
-datafinal$Fmin <- datafinal$fmin
-datafinal$RMSEA <- datafinal$rmsea
+datafinal$CFI <- datafinal$cfi
 
 
-ggplot(datafinal, aes(x=Model, y=Fmin, colour=PercentMissing)) + geom_line(aes(group=PercentMissing)) + 
-  geom_point()+facet_grid(PlaceMiss~FC)+ scale_colour_discrete(name="Percent Missing")
-
-ggplot(datafinal, aes(x=Model, y=RMSEA)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
+ggplot(datafinal, aes(x=Model, y=CFI)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
   geom_point(aes(color=PercentMissing))+facet_grid(PlaceMiss~FC)
+

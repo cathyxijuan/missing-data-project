@@ -34,8 +34,8 @@ data$Model <- model
 data <- melt(data, measure.var=1:2)
 data$Fmin <- data$value
 data$CFI <- data$cfi
-data$ModelHB <- rep(c(" Hypothesized Model\n (Misfit and Missing \n on Difference Factors)", 
-                      "Baseline Model\n (Misfit and Missing \n on Difference Factors)"), each=nrow(data)/2)
+data$ModelHB <- rep(c(" Fitted Model\n (Difference Factors)", 
+                      "Baseline Model\n (Difference Factors)"), each=nrow(data)/2)
 data
 
 
@@ -66,14 +66,15 @@ data2$Model <- model
 data2 <- melt(data2, measure.var=1:2)
 data2$Fmin <- data2$value
 data2$CFI <- data2$cfi
-data2$ModelHB <- rep(c("   Hypothesized Model \n (Misfit and Missing \n on the Same Factor)", 
-                       "  Baseline Model \n (Misfit and Missing \n on the Same Factor)"), 
+data2$ModelHB <- rep(c("   Fitted Model \n (Same Factor)", 
+                       "  Baseline Model \n (Same Factor)"), 
                      each=nrow(data2)/2)
 data2
 
 
 datafinal <-rbind(data2, data)
+datafinal$PercentMissing <- datafinal$perMiss
 
 
-ggplot(datafinal, aes(x=Model, y=Fmin, colour=perMiss)) + geom_line(aes(group=perMiss)) + 
-  geom_point()+facet_grid(Strength~ModelHB)+ scale_colour_discrete(name="Percent Missing")
+ggplot(datafinal, aes(x=Model, y=Fmin)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
+  geom_point(aes(color=PercentMissing))+facet_grid(Strength~ModelHB)

@@ -3,13 +3,10 @@ library(gridExtra)
 source("results.R")
 
 
-#Min Pattern, Two Variable missing
-
-#One CR 
 
 mc0 <- fitNoMissingShort_CR2_3[[1]][1:5,]
-mc20 <- fitMCAR_Short_CR2_3[[3]][1:5,]
-mc50 <- fitMCAR_Short_CR2_3[[4]][1:5,]
+mc20 <- fitMCAR_Short_CR2_3[[1]][1:5,]
+mc50 <- fitMCAR_Short_CR2_3[[2]][1:5,]
 
 weak0 <- fitNoMissingShort_CR2_3[[1]][1:5,]
 weak20 <- fitMAR_Linear_Short_CR2_3[[1]][1:5,]
@@ -35,11 +32,11 @@ data$NumCR <- rep(" Two Variable with Missing", nrow(data))
 
 
 #four
-
+fitMCAR_Short_CR2_3[5]
 
 mc0 <- fitNoMissingShort_CR2_3[[1]][1:5,]
-mc20 <- fitMCAR_Short_CR2_3[[7]][1:5,]
-mc50 <- fitMCAR_Short_CR2_3[[8]][1:5,]
+mc20 <- fitMCAR_Short_CR2_3[[5]][1:5,]
+mc50 <- fitMCAR_Short_CR2_3[[6]][1:5,]
 
 weak0 <- fitNoMissingShort_CR2_3[[1]][1:5,]
 weak20 <- fitMAR_Linear_Short_CR2_3[[5]][1:5,]
