@@ -51,12 +51,11 @@ x~~0*y
 
 fit.mod <- "
 y~1*x
-x~~ .5*x"
+x~~.5*x"
 
 sample.nobs=1000000
 missing.percentage=0.5
 simuData<- simulateData(pop.mod , sample.nobs=sample.nobs,seed=111)
-sigma<- cov(simuData)
 
 fit<- sem(fit.mod, data=simuData, missing="fiml", mimic="EQS")
 summary(fit)
@@ -95,3 +94,6 @@ func
 func <- 2*fac2^3-3/4*fac2-1/4
 func
 
+d <- 0.7378355
+f=0.5*(log(2*d)+1/d-1)+0.5*(log(2*d+1)+1/(2*d+1)-1)
+f/2
