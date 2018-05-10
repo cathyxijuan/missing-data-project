@@ -29,9 +29,9 @@ data <- as.data.frame(data, row.names = 1:nrow(data))
 data$CFI <- data$cfi
 data$perMiss<- perMiss 
 strength <- rep(c("  Zero Strength (MCAR)", " Weak Strength (MAR)", "Strong Strength (MAR)"), each=15)
-model <- rep(0:4, 9)
+ResidualSize <- rep(c(0, 0.1, 0.2, 0.3, 0.4), 9)
 data$Strength<- strength
-data$Model <- model
+data$ResidualSize <- ResidualSize
 data$placeMiss <- rep(" Same Factors", nrow(data2))
 
 
@@ -59,44 +59,17 @@ data2 <- as.data.frame(data2, row.names = 1:nrow(data2))
 data2$CFI <- data2$cfi
 data2$perMiss<- perMiss 
 strength <- rep(c("  Zero Strength (MCAR)", " Weak Strength (MAR)", "Strong Strength (MAR)"), each=15)
-model <- rep(0:4, 9)
 data2$Strength<- strength
-data2$Model <- model
+data2$ResidualSize <- ResidualSize
 data2$placeMiss <- rep(" Different Factor", nrow(data2))
 
-data2
-
-
-mc0 <- fitNoMissingShort_WM1[[2]][1:5,]
-mc20 <- fitMCAR_Short_WM1[[15]][1:5,]
-mc50 <- fitMCAR_Short_WM1[[16]][1:5,]
-
-weak0 <- fitNoMissingShort_WM1[[2]][1:5,]
-weak20 <- fitMAR_Linear_Short_WM1[[13]][1:5,]
-weak50 <- fitMAR_Linear_Short_WM1[[14]][1:5,]
-
-strong0 <- fitNoMissingShort_WM1[[2]][1:5,]
-strong20 <- fitMAR_Linear_Short_WM1[[15]][1:5,]
-strong50 <- fitMAR_Linear_Short_WM1[[16]][1:5,]
-
-
-data3 <-rbind(mc0, mc20, mc50, weak0, weak20, weak50, strong0, strong20, strong50 )
 
 
 
-perMiss <-rep( rep(c("0%", "20%", "50%"),each=5), 3)
-data3 <- as.data.frame(data3, row.names = 1:nrow(data3))
-data3$CFI <- data3$cfi
-data3$perMiss<- perMiss 
-strength <- rep(c("  Zero Strength (MCAR)", " Weak Strength (MAR)", "Strong Strength (MAR)"), each=15)
-model <- rep(0:4, 9)
-data3$Strength<- strength
-data3$Model <- model
-data3$placeMiss <- rep("Connection", nrow(data3))
 
-datafinal <-rbind(data, data2, data3)
+datafinal <-rbind(data, data2)
 datafinal$PercentMissing <- datafinal$perMiss
 
-ggplot(datafinal, aes(x=Model, y=CFI)) +geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
-  geom_point(aes(color=PercentMissing))+facet_grid(Strength~placeMiss)
+ggplot(datafinal, aes(x=ResidualSize, y=CFI)) +geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
+  geom_point(aes(color=PercentMissing))+facet_grid(placeMiss~Strength) +xlab("Size of Correlated Residual")
 
