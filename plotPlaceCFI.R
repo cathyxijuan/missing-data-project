@@ -22,7 +22,7 @@ data <- as.data.frame(data, row.names = 1:nrow(data))
 
 perMiss <-rep( rep(c("0%", "20%", "50%"),each=5), 2)
 ResidualSize <- rep(c(0, 0.1, 0.2, 0.3, 0.4), 6)
-placeMiss <- rep(c(" Different Factors", " Same Factor"), each=15)
+placeMiss <- rep(c(" Different Factor", " Same Factor"), each=15)
 
 
 data$PercentMissing<- perMiss 
@@ -62,4 +62,4 @@ datafinal$CFI <- datafinal$cfi
 
 
 ggplot(datafinal, aes(x=ResidualSize, y=CFI)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
-  geom_point(aes(color=PercentMissing))+facet_grid(placeMiss~NumMissVar) +xlab("Size of Correlated Residual")
+  geom_point(aes(color=PercentMissing))+facet_grid(placeMiss~NumMissVar) +xlab("Size of Correlated Residual \n (Degree of Misfit)")

@@ -34,7 +34,7 @@ library(ggplot2)
  MCAR$PatternNumber<- PatternNumber
  MCAR$NumMissVar <- NumMissVar
  MCAR$Strength <- Strength 
- MCAR$CFI <- MCAR$cfi
+ 
  
  
  ##############
@@ -101,39 +101,48 @@ library(ggplot2)
  MAR.max$Strength <- Strength 
 
  
- data <- rbind(MCAR, MAR.min, MAR.max)
- data$CFI <- data$cfi
+ data_WM_CFI <- rbind(MCAR, MAR.min, MAR.max)
+ data_WM_CFI$CFI <-  data_WM_CFI$cfi
+#save(data_WM_CFI , file="data_WM_CFI.R")
  
- MAR_Weak <- filter(data, Strength==" Weak Strength (MAR)")
- MAR_Weak
  
- MAR_Strong <- filter(data, Strength=="Strong Strength (MAR)")
+ 
+ 
+ MAR_Weak <- filter( data_WM_CFI, Strength==" Weak Strength (MAR)")
+ MAR_Weak 
+ 
+ MAR_Strong <- filter( data_WM_CFI, Strength=="Strong Strength (MAR)")
  MAR_Strong
  
- MaxPat <- filter(data, PatternNumber=="Maximum Missing Pattern")
+MCAR <- filter( data_WM_CFI, Strength=="  Zero Strength (MCAR)")
+
+ 
+ MaxPat <- filter( data_WM_CFI, PatternNumber=="Maximum Missing Pattern")
  MaxPat
  
  ggplot(MCAR, aes(x=FC.Size, y=CFI)) +
    geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
    geom_point(aes(color=PercentMissing))+
    facet_grid(PatternNumber~NumMissVar) +
-   xlab("Size of Factor Correlation")+scale_x_reverse()+
-   ggtitle("Zero Strength (MCAR)")+  theme(plot.title = element_text(hjust = 0.5))
+   xlab("Size of Factor Correlation (Degree of Misfit)")+scale_x_reverse()+
+   ggtitle("MCAR")+  theme(plot.title = element_text(hjust = 0.5))
  
  ggplot(MAR_Weak, aes(x=FC.Size, y=CFI)) +
    geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
    geom_point(aes(color=PercentMissing))+
    facet_grid(PatternNumber~NumMissVar) +
-   xlab("Size of Factor Correlation")+scale_x_reverse()+
-   ggtitle("Weak Strength (MAR)")+  theme(plot.title = element_text(hjust = 0.5))
+   xlab("Size of Factor Correlation (Degree of Misfit)")+scale_x_reverse()+
+   ggtitle("Weak MAR")+  theme(plot.title = element_text(hjust = 0.5))
  
  ggplot(MAR_Strong, aes(x=FC.Size, y=CFI)) +
    geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
    geom_point(aes(color=PercentMissing))+
    facet_grid(PatternNumber~NumMissVar) +
-   xlab("Size of Factor Correlation")+scale_x_reverse()+
-   ggtitle("Strong Strength (MAR)")+  theme(plot.title = element_text(hjust = 0.5))
+   xlab("Size of Factor Correlation (Degree of Misfit)")+scale_x_reverse()+
+   ggtitle("Strong MAR")+  theme(plot.title = element_text(hjust = 0.5))
  
+ MAR_Weak %>% filter(PatternNumber=="Maximum Missing Pattern"& NumMissVar=="Six Variables with Missing" &
+                       FC.Size=="0.2")
  
  
  

@@ -2,7 +2,6 @@ library(ggplot2)
 library(gridExtra)
 source("results.R")
 
-
 #zero correlation, min pattern, one CR
 #Factor correlation = 0 
 df0 <- fitNoMissingShort_CR1_1[[1]][1:5,]
@@ -19,7 +18,7 @@ data <- rbind(df0,df20 ,df50, sv0, sv20, sv50 )
 perMiss <-rep( rep(c("0%", "20%", "50%"),each=5), 2)
 data <- as.data.frame(data, row.names = 1:nrow(data))
 data$PercentMissing<- perMiss 
-placeMiss <- rep(c("Different Factors", "Same Factor"), each=15)
+placeMiss <- rep(c("Different Factor", "Same Factor"), each=15)
 ResidualSize <- rep(c(0, 0.1, 0.2, 0.3, 0.4), 6)
 
 data$PlaceMiss<- placeMiss
@@ -78,4 +77,4 @@ datafinal$RMSEA <- datafinal$rmsea
 
 
 ggplot(datafinal, aes(x=ResidualSize , y=RMSEA)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
-  geom_point(aes(color=PercentMissing))+facet_grid(PlaceMiss~FC)+xlab("Size of Correlated Residual")
+  geom_point(aes(color=PercentMissing))+facet_grid(PlaceMiss~FC)+xlab("Size of Correlated Residual \n (Degree of Misfit)")

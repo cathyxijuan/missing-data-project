@@ -452,6 +452,7 @@ lavInspect(fitmis, "fit")
 
 
 
+
 #trying saturated model under MCAR and MAR
 pop.mod <- '     
 y~~ 2*y

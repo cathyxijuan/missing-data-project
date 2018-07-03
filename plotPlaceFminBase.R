@@ -67,6 +67,6 @@ datafinal$CFI <- datafinal$cfi
 
 
 ggplot(datafinal, aes(x=ResidualSize, y=Fmin)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
-  geom_point(aes(color=PercentMissing))+facet_grid(placeMiss~ModelHB)
+  geom_point(aes(color=PercentMissing))+facet_grid(placeMiss~ModelHB)+xlab("Size of Correlated Residual \n (Degree of Misfit)")
 
 
