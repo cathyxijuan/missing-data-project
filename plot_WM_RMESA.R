@@ -13,7 +13,7 @@ PercentMissing <- rep( rep(c("0%", "20%", "50%"),each=9), 6)
 PatternNumber <- rep(rep(c(" Minimum Missing Pattern", "Maximum Missing Pattern"), each=27),3)
 NumMissVar <- rep(c(" Two Variables with Missing", "Four Variables with Missing",
                     "Six Variables with Missing"),each=54)
-Strength <- rep("  Zero Strength (MCAR)", 162)
+Strength <- rep("  MCAR", 162)
 
 MCAR <-vector()
 for(i in 1:12){
@@ -54,7 +54,7 @@ MAR.min
 
 
 PercentMissing <- rep( rep(c("0%", "20%", "50%"),each=9), 6)
-Strength <- rep(rep(c(" Weak Strength (MAR)", "Strong Strength (MAR)"), each=27),3)
+Strength <- rep(rep(c(" Weak MAR", "Strong MAR"), each=27),3)
 NumMissVar <- rep(c(" Two Variables with Missing", "Four Variables with Missing",
                     "Six Variables with Missing"),each=54)
 PatternNumber <- rep(" Minimum Missing Pattern", 162)
@@ -90,7 +90,7 @@ MAR.max
 
 
 PercentMissing <- rep( rep(c("0%", "20%", "50%"),each=9), 6)
-Strength <- rep(rep(c(" Weak Strength (MAR)", "Strong Strength (MAR)"), each=27),3)
+Strength <- rep(rep(c(" Weak MAR", "Strong MAR"), each=27),3)
 NumMissVar <- rep(c(" Two Variables with Missing", "Four Variables with Missing",
                     "Six Variables with Missing"),each=54)
 PatternNumber <- rep("Maximum Missing Pattern", 162)
@@ -105,8 +105,8 @@ MAR.max$RMSEA <- MAR.max$rmsea
 
 
 data_WM_RMSEA <- rbind(MCAR, MAR.min, MAR.max)
-
-#save(data_WM_RMSEA, file="data_WM_RMSEA.R")
+tail(data_WM_RMSEA)
+#save(data_WM_RMSEA, file="data_WM_RMSEA.RData")
 
 
 

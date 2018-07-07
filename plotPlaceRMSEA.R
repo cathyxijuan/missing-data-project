@@ -62,4 +62,5 @@ datafinal$RMSEA <- datafinal$rmsea
 
 
 ggplot(datafinal, aes(x=ResidualSize, y=RMSEA)) + geom_line(aes(linetype=PercentMissing, color=PercentMissing)) + 
-  geom_point(aes(color=PercentMissing))+facet_grid(placeMiss~NumMissVar) +xlab("Size of Correlated Residual \n (Degree of Misfit)")
+  geom_point(aes(color=PercentMissing))+facet_grid(placeMiss~NumMissVar) +
+  xlab("Size of Correlated Residual \n (Degree of Misfit)")

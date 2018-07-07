@@ -13,7 +13,7 @@ library(ggplot2)
  PatternNumber <- rep(rep(c(" Minimum Missing Pattern", "Maximum Missing Pattern"), each=27),3)
  NumMissVar <- rep(c(" Two Variables with Missing", "Four Variables with Missing",
                      "Six Variables with Missing"),each=54)
- Strength <- rep("  Zero Strength (MCAR)", 162)
+ Strength <- rep("  MCAR", 162)
  
  MCAR <-vector()
  for(i in 1:12){
@@ -53,7 +53,7 @@ library(ggplot2)
  
  
  PercentMissing <- rep( rep(c("0%", "20%", "50%"),each=9), 6)
- Strength <- rep(rep(c(" Weak Strength (MAR)", "Strong Strength (MAR)"), each=27),3)
+ Strength <- rep(rep(c(" Weak MAR", "Strong MAR"), each=27),3)
  NumMissVar <- rep(c(" Two Variables with Missing", "Four Variables with Missing",
                      "Six Variables with Missing"),each=54)
  PatternNumber <- rep(" Minimum Missing Pattern", 162)
@@ -88,7 +88,7 @@ library(ggplot2)
  
  
  PercentMissing <- rep( rep(c("0%", "20%", "50%"),each=9), 6)
- Strength <- rep(rep(c(" Weak Strength (MAR)", "Strong Strength (MAR)"), each=27),3)
+ Strength <- rep(rep(c(" Weak MAR", "Strong MAR"), each=27),3)
  NumMissVar <- rep(c(" Two Variables with Missing", "Four Variables with Missing",
                      "Six Variables with Missing"),each=54)
  PatternNumber <- rep("Maximum Missing Pattern", 162)
@@ -103,9 +103,9 @@ library(ggplot2)
  
  data_WM_CFI <- rbind(MCAR, MAR.min, MAR.max)
  data_WM_CFI$CFI <-  data_WM_CFI$cfi
-#save(data_WM_CFI , file="data_WM_CFI.R")
- 
- 
+#save(data_WM_CFI , file="data_WM_CFI.RData")
+
+
  
  
  MAR_Weak <- filter( data_WM_CFI, Strength==" Weak Strength (MAR)")

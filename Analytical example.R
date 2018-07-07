@@ -296,6 +296,8 @@ upper <- rep(Inf,5)
 mu_truc2 <- mtmvnorm(mu2, sigma_t, lower, upper)$tmean
 sigma_truc2 <- mtmvnorm(mu2, sigma_t, lower, upper)$tvar
 
+
+
 #caculate MAR fmin
 p=6
 sigma_hat1 <- sigma.hat
@@ -329,3 +331,4 @@ F_pop <- 0.5*(F_p1+F_p2)
 F_pop/2
 
 6*7/2
+3/sqrt(20)
