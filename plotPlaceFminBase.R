@@ -1,5 +1,4 @@
 library(ggplot2)
-library(gridExtra)
 library(reshape2)
 
 source("results.R")
@@ -9,7 +8,6 @@ source("results.R")
 df0 <- fitNoMissingShort_CR2_1[[2]][1:5,1:2]
 df20 <- fitMCAR_Short_CR2_1[[9]][1:5,1:2]
 df50 <- fitMCAR_Short_CR2_1[[10]][1:5,1:2]
-
 
 
 sv0 <- fitNoMissingShort_CR2_3[[2]][1:5,1:2]
