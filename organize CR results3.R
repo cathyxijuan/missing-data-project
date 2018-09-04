@@ -13,9 +13,9 @@ d1
 d1 <- cbind(d1, Size_Of_CR, FC)
 d1
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("0%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d1 <- cbind(d1, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d1
@@ -29,9 +29,9 @@ d2
 d2 <- cbind(d2, Size_Of_CR, FC)
 d2
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d2 <- cbind(d2, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d2
@@ -50,9 +50,9 @@ d3 <- cbind(d3, Size_Of_CR, FC)
 d3
 
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d3 <- cbind(d3, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d3
@@ -64,7 +64,7 @@ d3
 
 #################
 d4 <- d1
-d4$Number_of_Missing_Variables <-"Four Variables with Missing"
+d4$Number_of_Missing_Variables <-"Four Variables with Missing Data"
 d4
 data <- rbind(data, d4)
 data
@@ -78,9 +78,9 @@ d5 <- cbind(d5, Size_Of_CR, FC)
 d5
 
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d5 <- cbind(d5, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d5
@@ -97,9 +97,9 @@ d6 <- cbind(d6, Size_Of_CR, FC)
 d6
 
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d6 <- cbind(d6, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d6
@@ -133,9 +133,9 @@ d8
 d8 <- cbind(d8, Size_Of_CR, FC)
 d8
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep(" Weak MAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d8 <- cbind(d8, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d8
@@ -157,9 +157,9 @@ d9
 d9 <- cbind(d9, Size_Of_CR, FC)
 d9
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep(" Weak MAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d9 <- cbind(d9, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d9
@@ -173,7 +173,7 @@ tail(data,90)
 ##########
 d10 <- d7
 d10
-d10$Number_of_Missing_Variables <-"Four Variables with Missing"
+d10$Number_of_Missing_Variables <-"Four Variables with Missing Data"
 d10
 data <- rbind(data, d10)
 tail(data,90)
@@ -194,9 +194,9 @@ d11
 d11 <- cbind(d11, Size_Of_CR, FC)
 d11
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep(" Weak MAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d11 <- cbind(d11, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d11
@@ -216,9 +216,9 @@ d12
 d12 <- cbind(d12, Size_Of_CR, FC)
 d12
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep(" Weak MAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d12 <- cbind(d12, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d12
@@ -256,9 +256,9 @@ d14
 d14 <- cbind(d14, Size_Of_CR, FC)
 d14
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("Strong MAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d14 <- cbind(d14, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d14
@@ -281,9 +281,9 @@ d15
 d15 <- cbind(d15, Size_Of_CR, FC)
 d15
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("Strong MAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d15 <- cbind(d15, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d15
@@ -296,7 +296,7 @@ tail(data,90)
 ###########
 d16 <- d13
 d16
-d16$Number_of_Missing_Variables <-"Four Variables with Missing"
+d16$Number_of_Missing_Variables <-"Four Variables with Missing Data"
 d16
 data <- rbind(data, d16)
 
@@ -314,9 +314,9 @@ d17
 d17 <- cbind(d17, Size_Of_CR, FC)
 d17
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("Strong MAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d17 <- cbind(d17, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d17
@@ -341,9 +341,9 @@ d18
 d18 <- cbind(d18, Size_Of_CR, FC)
 d18
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("Strong MAR",15))
-Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor", 15))
+Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
-Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing", 15))
+Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
 Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
 d18 <- cbind(d18, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d18
