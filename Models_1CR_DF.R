@@ -2,7 +2,7 @@ library(lavaan)
 source("functions.R")
 
 
-#misfit and missing are in different places; different factors
+#misfit and missing are in different places; different factors ; MISFIT ON X5 and X6
 
 fitted.mod <- '     
 f1 =~ NA*x1 + x2 + x3 +x4 + x5 + x6
@@ -344,51 +344,10 @@ x5 ~~ 0.4*x6
 
 
 
-
-
-
 pop.mod <- list( pop.mod1.0, pop.mod1.1, pop.mod1.2, pop.mod1.3, pop.mod1.4,
                  pop.mod2.0, pop.mod2.1, pop.mod2.2, pop.mod2.3, pop.mod2.4,
                  pop.mod3.0, pop.mod3.1, pop.mod3.2, pop.mod3.3, pop.mod3.4)
 
 
+ 
 
-# sigma <-list()
-#  for(i in 1:length(pop.mod)){
-#   fit <-cfa(pop.mod[[i]], data=simulateData(pop.mod[[i]], sample.nobs=1000))
-#   sigma[[i]]<- lavInspect(fit, "cov.ov")
-#   }
-# 
-# sigma.hat <-list()
-# 
-# for(i in 1:length(pop.mod)){
-# 
-# fit <- cfa(model=fitted.mod, sample.nobs=300, sample.cov=sigma[[i]], mimic="EQS")
-#    sigma.hat[[i]]<- lavInspect(fit, "cov.ov")
-#  }
-# sigmaHat_CR1_1 <- sigma.hat
-# sigma_CR1_1 <-sigma
-# save(sigmaHat_CR1_1, file="sigmaHat_CR1_1.RData")
-# save(sigma_CR1_1, file="sigma_CR1_1.RData")
-# 
-# 
-# 
-# 
-# 
-# fit.indices.comp <-matrix( nrow = 0, ncol = 12)
-# 
-# for(i in 1:length(pop.mod)){
-#    simuData <- simulateData(pop.mod[[i]], sample.nobs=1000000,seed=111)
-#     fit <- cfa(fitted.mod, data=simuData)
-#     fit.indices.comp<- rbind(fit.indices.comp,lavInspect(fit, "fit")[c("fmin","rmsea","cfi","srmr","gfi", "df", "chisq", "pvalue", "baseline.chisq", "baseline.df", "rmsea.ci.lower", "rmsea.ci.upper")])
-#    }
-# 
-# 
-# 
-# fitNoMissing_CR1_1  <- fit.indices.comp
-# rmsea_NoMissing_CR1_1 <- rmsea_table(fitNoMissing_CR1_1)
-# cfi_NoMissing_CR1_1 <- cfi_table(fitNoMissing_CR1_1)
-# fitNoMissingShort_CR1_1 <- list(rmsea=rmsea_NoMissing_CR1_1, cfi=cfi_NoMissing_CR1_1 )
-# 
-# save(fitNoMissing_CR1_1 , file="fitNoMissing_CR1_1.RData")
-# save(fitNoMissingShort_CR1_1 , file="fitNoMissingShort_CR1_1.RData")
