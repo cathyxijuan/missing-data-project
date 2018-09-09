@@ -6,7 +6,7 @@ rmsea_table <- function(fit.matrix) {
   rmsea <- fit.matrix[,"rmsea"]
   final_table <- cbind(fmin, rmsea)
   row.names(final_table) <- rep("",nrow(final_table))
-  round(final_table,4)
+  round(final_table,6)
 }
 
 
@@ -22,5 +22,5 @@ cfi_table <- function(fit.matrix) {
   fminB <- fit.matrix[,"baseline.chisq"]/1000000
   final_table <- cbind(fmin, fminB, cfi)
   row.names(final_table) <- rep("",nrow(final_table))
-  round(final_table,4)
+  round(final_table,6)
 }
