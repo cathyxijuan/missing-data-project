@@ -5,7 +5,7 @@ FC <- data.frame(FC=rep(c("Factor Correlation = 0", "Factor Correlation = 0.4", 
 
 ###
 
-d1 <- cbind(fitNoMissingShort_2CR_DF[[2]], fitNoMissingShort_2CR_DF[[1]][,"rmsea"])
+d1 <- cbind(fitNoMissingShort_1CR_DF[[2]], fitNoMissingShort_1CR_DF[[1]][,"rmsea"])
 colnames(d1) <- names
 d1
 
@@ -16,15 +16,16 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("0%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d1 <- cbind(d1, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d1
 
 
 #################
-d2 <- cbind(fitMCAR_Short_2CR_DF[[5]],fitMCAR_Short_2CR_DF[[1]][,"rmsea"])
+d2 <- cbind(fitMCAR_Short_1CR_DF[[5]],fitMCAR_Short_1CR_DF[[1]][,"rmsea"])
 colnames(d2) <- names
 d2
+
 
 d2 <- cbind(d2, Size_Of_CR, FC)
 d2
@@ -32,7 +33,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d2 <- cbind(d2, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d2
 
@@ -42,7 +43,7 @@ data
 
 
 #######
-d3 <-  cbind(fitMCAR_Short_2CR_DF[[6]],fitMCAR_Short_2CR_DF[[2]][,"rmsea"])
+d3 <-  cbind(fitMCAR_Short_1CR_DF[[6]],fitMCAR_Short_1CR_DF[[2]][,"rmsea"])
 colnames(d3) <- names
 d3
 
@@ -53,7 +54,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d3 <- cbind(d3, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d3
 
@@ -71,17 +72,18 @@ data
 
 
 #######
-d5 <-  cbind(fitMCAR_Short_2CR_DF[[7]],fitMCAR_Short_2CR_DF[[3]][,"rmsea"])
+d5 <-  cbind(fitMCAR_Short_1CR_DF[[7]],fitMCAR_Short_1CR_DF[[3]][,"rmsea"])
 colnames(d5) <- names
 d5
 d5 <- cbind(d5, Size_Of_CR, FC)
 d5
 
+
 Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d5 <- cbind(d5, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d5
 
@@ -90,7 +92,7 @@ data
 
 
 #########
-d6 <-  cbind(fitMCAR_Short_2CR_DF[[8]],fitMCAR_Short_2CR_DF[[4]][,"rmsea"])
+d6 <-  cbind(fitMCAR_Short_1CR_DF[[8]],fitMCAR_Short_1CR_DF[[4]][,"rmsea"])
 colnames(d6) <- names
 d6
 d6 <- cbind(d6, Size_Of_CR, FC)
@@ -100,7 +102,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep("  MCAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d6 <- cbind(d6, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d6
 
@@ -121,12 +123,12 @@ data
 
 
 ################
-fitMAR_Short_2CR_DF[9]
-fitMAR_Short_2CR_DF[1]
+fitMAR_Short_1CR_DF[9]
+fitMAR_Short_1CR_DF[1]
 
 
 
-d8 <- cbind(fitMAR_Short_2CR_DF[[9]],fitMAR_Short_2CR_DF[[1]][,"rmsea"])
+d8 <- cbind(fitMAR_Short_1CR_DF[[9]],fitMAR_Short_1CR_DF[[1]][,"rmsea"])
 colnames(d8) <- names
 d8
 
@@ -136,7 +138,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep(" Weak MAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d8 <- cbind(d8, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d8
 
@@ -147,10 +149,10 @@ tail(data,90)
 
 ####
 ################
-fitMAR_Short_2CR_DF[10]
-fitMAR_Short_2CR_DF[2]
+fitMAR_Short_1CR_DF[10]
+fitMAR_Short_1CR_DF[2]
 
-d9 <- cbind(fitMAR_Short_2CR_DF[[10]],fitMAR_Short_2CR_DF[[2]][,"rmsea"])
+d9 <- cbind(fitMAR_Short_1CR_DF[[10]],fitMAR_Short_1CR_DF[[2]][,"rmsea"])
 colnames(d9) <- names
 d9
 
@@ -160,7 +162,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep(" Weak MAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d9 <- cbind(d9, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d9
 
@@ -182,12 +184,11 @@ tail(data,90)
 
 ##################
 
-fitMAR_Short_2CR_DF[13]
-fitMAR_Short_2CR_DF[5]
+fitMAR_Short_1CR_DF[13]
+fitMAR_Short_1CR_DF[5]
 
 
-
-d11 <- cbind(fitMAR_Short_2CR_DF[[13]],fitMAR_Short_2CR_DF[[5]][,"rmsea"])
+d11 <- cbind(fitMAR_Short_1CR_DF[[13]],fitMAR_Short_1CR_DF[[5]][,"rmsea"])
 colnames(d11) <- names
 d11
 
@@ -197,7 +198,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep(" Weak MAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d11 <- cbind(d11, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d11
 
@@ -206,10 +207,10 @@ tail(data,90)
 
 
 ##########
-fitMAR_Short_2CR_DF[14]
-fitMAR_Short_2CR_DF[6]
+fitMAR_Short_1CR_DF[14]
+fitMAR_Short_1CR_DF[6]
 
-d12 <- cbind(fitMAR_Short_2CR_DF[[14]],fitMAR_Short_2CR_DF[[6]][,"rmsea"])
+d12 <- cbind(fitMAR_Short_1CR_DF[[14]],fitMAR_Short_1CR_DF[[6]][,"rmsea"])
 colnames(d12) <- names
 d12
 
@@ -219,7 +220,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep(" Weak MAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d12 <- cbind(d12, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d12
 
@@ -244,12 +245,12 @@ tail(data,90)
 
 
 ######
-fitMAR_Short_2CR_DF[11]
-fitMAR_Short_2CR_DF[3]
+fitMAR_Short_1CR_DF[11]
+fitMAR_Short_1CR_DF[3]
 
 
 
-d14 <- cbind(fitMAR_Short_2CR_DF[[11]],fitMAR_Short_2CR_DF[[3]][,"rmsea"])
+d14 <- cbind(fitMAR_Short_1CR_DF[[11]],fitMAR_Short_1CR_DF[[3]][,"rmsea"])
 colnames(d14) <- names
 d14
 
@@ -259,7 +260,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep("Strong MAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d14 <- cbind(d14, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d14
 
@@ -271,10 +272,10 @@ tail(data,90)
 
 
 ##########
-fitMAR_Short_2CR_DF[12]
-fitMAR_Short_2CR_DF[4]
+fitMAR_Short_1CR_DF[12]
+fitMAR_Short_1CR_DF[4]
 
-d15 <- cbind(fitMAR_Short_2CR_DF[[12]],fitMAR_Short_2CR_DF[[4]][,"rmsea"])
+d15 <- cbind(fitMAR_Short_1CR_DF[[12]],fitMAR_Short_1CR_DF[[4]][,"rmsea"])
 colnames(d15) <- names
 d15
 
@@ -284,7 +285,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep("Strong MAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep(" Two Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d15 <- cbind(d15, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d15
 
@@ -304,10 +305,10 @@ data <- rbind(data, d16)
 
 #############
 
-fitMAR_Short_2CR_DF[15]
-fitMAR_Short_2CR_DF[7]
+fitMAR_Short_1CR_DF[15]
+fitMAR_Short_1CR_DF[7]
 
-d17 <- cbind(fitMAR_Short_2CR_DF[[15]],fitMAR_Short_2CR_DF[[7]][,"rmsea"])
+d17 <- cbind(fitMAR_Short_1CR_DF[[15]],fitMAR_Short_1CR_DF[[7]][,"rmsea"])
 colnames(d17) <- names
 d17
 
@@ -317,7 +318,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep("Strong MAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("20%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d17 <- cbind(d17, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d17
 
@@ -329,12 +330,12 @@ tail(data,90)
 
 
 ####
-fitMAR_Short_2CR_DF[16]
-fitMAR_Short_2CR_DF[8]
+fitMAR_Short_1CR_DF[16]
+fitMAR_Short_1CR_DF[8]
 
 
 
-d18 <- cbind(fitMAR_Short_2CR_DF[[16]],fitMAR_Short_2CR_DF[[8]][,"rmsea"])
+d18 <- cbind(fitMAR_Short_1CR_DF[[16]],fitMAR_Short_1CR_DF[[8]][,"rmsea"])
 colnames(d18) <- names
 d18
 
@@ -344,7 +345,7 @@ Missing_Mechanism <- data.frame(Missing_Mechanism=rep("Strong MAR",15))
 Location_Of_Misfit <- data.frame(Location_Of_Misfit=rep("Different Factor (DF)", 15))
 Percent_Missing <- data.frame(Percent_Missing=rep("50%", 15))
 Number_of_Missing_Variables <- data.frame(Number_of_Missing_Variables=rep("Four Variables with Missing Data", 15))
-Number_Of_CR <- data.frame(Number_Of_CR=rep("Two Correlated Residuals", 15))
+Number_Of_CR <- data.frame(Number_Of_CR=rep("One Correlated Residual", 15))
 d18 <- cbind(d18, Number_Of_CR, Location_Of_Misfit, Percent_Missing, Number_of_Missing_Variables ,Missing_Mechanism)
 d18
 
@@ -352,4 +353,4 @@ data <- rbind(data, d18)
 tail(data,90)
 
 
-data3=data
+data1=data

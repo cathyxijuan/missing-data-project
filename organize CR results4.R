@@ -5,7 +5,7 @@ FC <- data.frame(FC=rep(c("Factor Correlation = 0", "Factor Correlation = 0.4", 
 
 ###
 
-d1 <- cbind(fitNoMissingShort_CR2_3[[2]], fitNoMissingShort_CR2_3[[1]][,"rmsea"])
+d1 <- cbind(fitNoMissingShort_2CR_SF[[2]], fitNoMissingShort_2CR_SF[[1]][,"rmsea"])
 colnames(d1) <- names
 d1
 
@@ -22,7 +22,7 @@ d1
 
 
 #################
-d2 <- cbind(fitMCAR_Short_CR2_3[[9]],fitMCAR_Short_CR2_3[[1]][,"rmsea"])
+d2 <- cbind(fitMCAR_Short_2CR_SF[[5]],fitMCAR_Short_2CR_SF[[1]][,"rmsea"])
 colnames(d2) <- names
 d2
 
@@ -42,7 +42,7 @@ data
 
 
 #######
-d3 <-  cbind(fitMCAR_Short_CR2_3[[10]],fitMCAR_Short_CR2_3[[2]][,"rmsea"])
+d3 <-  cbind(fitMCAR_Short_2CR_SF[[6]],fitMCAR_Short_2CR_SF[[2]][,"rmsea"])
 colnames(d3) <- names
 d3
 
@@ -71,7 +71,7 @@ data
 
 
 #######
-d5 <-  cbind(fitMCAR_Short_CR2_3[[13]],fitMCAR_Short_CR2_3[[5]][,"rmsea"])
+d5 <-  cbind(fitMCAR_Short_2CR_SF[[7]],fitMCAR_Short_2CR_SF[[3]][,"rmsea"])
 colnames(d5) <- names
 d5
 d5 <- cbind(d5, Size_Of_CR, FC)
@@ -90,7 +90,7 @@ data
 
 
 #########
-d6 <-  cbind(fitMCAR_Short_CR2_3[[14]],fitMCAR_Short_CR2_3[[6]][,"rmsea"])
+d6 <-  cbind(fitMCAR_Short_2CR_SF[[8]],fitMCAR_Short_2CR_SF[[4]][,"rmsea"])
 colnames(d6) <- names
 d6
 d6 <- cbind(d6, Size_Of_CR, FC)
@@ -121,12 +121,12 @@ data
 
 
 ################
-fitMAR_Linear_Short_CR2_3[9]
-fitMAR_Linear_Short_CR2_3[1]
+fitMAR_Short_2CR_SF[9]
+fitMAR_Short_2CR_SF[1]
 
 
 
-d8 <- cbind(fitMAR_Linear_Short_CR2_3[[9]],fitMAR_Linear_Short_CR2_3[[1]][,"rmsea"])
+d8 <- cbind(fitMAR_Short_2CR_SF[[9]],fitMAR_Short_2CR_SF[[1]][,"rmsea"])
 colnames(d8) <- names
 d8
 
@@ -147,10 +147,10 @@ tail(data,90)
 
 ####
 ################
-fitMAR_Linear_Short_CR2_3[10]
-fitMAR_Linear_Short_CR2_3[2]
+fitMAR_Short_2CR_SF[10]
+fitMAR_Short_2CR_SF[2]
 
-d9 <- cbind(fitMAR_Linear_Short_CR2_3[[10]],fitMAR_Linear_Short_CR2_3[[2]][,"rmsea"])
+d9 <- cbind(fitMAR_Short_2CR_SF[[10]],fitMAR_Short_2CR_SF[[2]][,"rmsea"])
 colnames(d9) <- names
 d9
 
@@ -182,12 +182,12 @@ tail(data,90)
 
 ##################
 
-fitMAR_Linear_Short_CR2_3[13]
-fitMAR_Linear_Short_CR2_3[5]
+fitMAR_Short_2CR_SF[13]
+fitMAR_Short_2CR_SF[5]
 
 
 
-d11 <- cbind(fitMAR_Linear_Short_CR2_3[[13]],fitMAR_Linear_Short_CR2_3[[5]][,"rmsea"])
+d11 <- cbind(fitMAR_Short_2CR_SF[[13]],fitMAR_Short_2CR_SF[[5]][,"rmsea"])
 colnames(d11) <- names
 d11
 
@@ -206,10 +206,10 @@ tail(data,90)
 
 
 ##########
-fitMAR_Linear_Short_CR2_3[14]
-fitMAR_Linear_Short_CR2_3[6]
+fitMAR_Short_2CR_SF[14]
+fitMAR_Short_2CR_SF[6]
 
-d12 <- cbind(fitMAR_Linear_Short_CR2_3[[14]],fitMAR_Linear_Short_CR2_3[[6]][,"rmsea"])
+d12 <- cbind(fitMAR_Short_2CR_SF[[14]],fitMAR_Short_2CR_SF[[6]][,"rmsea"])
 colnames(d12) <- names
 d12
 
@@ -244,12 +244,12 @@ tail(data,90)
 
 
 ######
-fitMAR_Linear_Short_CR2_3[11]
-fitMAR_Linear_Short_CR2_3[3]
+fitMAR_Short_2CR_SF[11]
+fitMAR_Short_2CR_SF[3]
 
 
 
-d14 <- cbind(fitMAR_Linear_Short_CR2_3[[11]],fitMAR_Linear_Short_CR2_3[[3]][,"rmsea"])
+d14 <- cbind(fitMAR_Short_2CR_SF[[11]],fitMAR_Short_2CR_SF[[3]][,"rmsea"])
 colnames(d14) <- names
 d14
 
@@ -271,10 +271,10 @@ tail(data,90)
 
 
 ##########
-fitMAR_Linear_Short_CR2_3[12]
-fitMAR_Linear_Short_CR2_3[4]
+fitMAR_Short_2CR_SF[12]
+fitMAR_Short_2CR_SF[4]
 
-d15 <- cbind(fitMAR_Linear_Short_CR2_3[[12]],fitMAR_Linear_Short_CR2_3[[4]][,"rmsea"])
+d15 <- cbind(fitMAR_Short_2CR_SF[[12]],fitMAR_Short_2CR_SF[[4]][,"rmsea"])
 colnames(d15) <- names
 d15
 
@@ -304,10 +304,10 @@ data <- rbind(data, d16)
 
 #############
 
-fitMAR_Linear_Short_CR2_3[15]
-fitMAR_Linear_Short_CR2_3[7]
+fitMAR_Short_2CR_SF[15]
+fitMAR_Short_2CR_SF[7]
 
-d17 <- cbind(fitMAR_Linear_Short_CR2_3[[15]],fitMAR_Linear_Short_CR2_3[[7]][,"rmsea"])
+d17 <- cbind(fitMAR_Short_2CR_SF[[15]],fitMAR_Short_2CR_SF[[7]][,"rmsea"])
 colnames(d17) <- names
 d17
 
@@ -329,12 +329,12 @@ tail(data,90)
 
 
 ####
-fitMAR_Linear_Short_CR2_3[16]
-fitMAR_Linear_Short_CR2_3[8]
+fitMAR_Short_2CR_SF[16]
+fitMAR_Short_2CR_SF[8]
 
 
 
-d18 <- cbind(fitMAR_Linear_Short_CR2_3[[16]],fitMAR_Linear_Short_CR2_3[[8]][,"rmsea"])
+d18 <- cbind(fitMAR_Short_2CR_SF[[16]],fitMAR_Short_2CR_SF[[8]][,"rmsea"])
 colnames(d18) <- names
 d18
 
