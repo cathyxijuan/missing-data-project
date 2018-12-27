@@ -74,7 +74,7 @@ cfi.case2
 
 
 
-#case 3:  MCAR data; misspecification involves variables with missing data
+#Case 3:  MCAR data; misspecification involves variables with missing data
 p.pattern1 <- 6 #number of variables in the first pattern
 sigma.pattern1 <- sigma #population covariance matrix for the first pattern
 mu.pattern1 <- mu #population mean vector for the first pattern
@@ -116,99 +116,52 @@ cfi.case3
 
 
 #Case 4: MAR data; misspecification involves variables with missing data
-cutoff <- qnorm(0.8)
-#Pattern1 : complete
-mu1    <- rep(0,6)
+cutoff <- qnorm(0.8) #0.8416212
+
+mu.pattern1    <- mu #population mean vector for pattern 1
+sigma.pattern1 <- sigma #population covariance matrix for pattern 1
+mu.not.pattern1 <- mu.not #model-implied mean vector for pattern 1
+sigma.not.pattern1 <- sigma.not #model-implied covariance matrix for pattern 1
 lower <- rep(-Inf,6)
 upper <- c(Inf, cutoff, rep(Inf, 4))
-mu_truc1 <- mtmvnorm(mu1, sigma, lower, upper)$tmean
-sigma_truc1 <- mtmvnorm(mu1, sigma, lower, upper)$tvar
+mu.star.pattern1 <- mtmvnorm(mu.pattern1, sigma.pattern1, lower, upper)$tmean #pattern-specific mean vector for pattern 1
+sigma.star.pattern1 <- mtmvnorm(mu.pattern1, sigma.pattern1, lower, upper)$tvar #pattern-specific covariance matrix for pattern 1
 
 
-#Pattern2 : x1 is missing
-sigma_t <- sigma[-1,-1]
-mu2    <- rep(0, 5)
+
+mu.pattern2 <- mu[2:6] #population mean vector for pattern 2
+sigma.pattern2 <- sigma[2:6, 2:6] #population covariance matrix for pattern 2
+mu.not.pattern2 <- mu.not[2:6] #model-implied mean vector for pattern 2
+sigma.not.pattern2 <- sigma.not[2:6,2:6] #model-implied covariance matrix for pattern 2
 lower <- c(cutoff, rep(-Inf, 4))
 upper <- rep(Inf,5)
-mu_truc2 <- mtmvnorm(mu2, sigma_t, lower, upper)$tmean
-sigma_truc2 <- mtmvnorm(mu2, sigma_t, lower, upper)$tvar
+mu.star.pattern2 <- mtmvnorm(mu.pattern2, sigma.pattern2, lower, upper)$tmean #pattern-specific mean vector for pattern 2
+sigma.star.pattern2 <- mtmvnorm(mu.pattern2, sigma.pattern2, lower, upper)$tvar #pattern-specific covariance matrix for pattern 2
+
+
+fmin.mar.case4 <- 0.8*(log(det(sigma.not.pattern1%*%solve(sigma.pattern1)))+
+                        sum(diag((sigma.star.pattern1 + 
+                                    (mu.star.pattern1-mu.not.pattern1)%*%t(mu.star.pattern1-mu.not.pattern1))%*%solve(sigma.not.pattern1)))-
+                        sum(diag((sigma.star.pattern1 + 
+                                    (mu.star.pattern1-mu.pattern1)%*%t(mu.star.pattern1-mu.pattern1))%*%solve(sigma.pattern1)))) +
+  0.2*(log(det(sigma.not.pattern2%*%solve(sigma.pattern2)))+
+        sum(diag((sigma.star.pattern2 + 
+                    (mu.star.pattern2-mu.not.pattern2)%*%t(mu.star.pattern2-mu.not.pattern2))%*%solve(sigma.not.pattern2)))-
+        sum(diag((sigma.star.pattern2 + 
+                    (mu.star.pattern2-mu.pattern2)%*%t(mu.star.pattern2-mu.pattern2))%*%solve(sigma.pattern2))))
+
+fmin.mar.case4
+
+
+rmsea.mar.case4 <-sqrt(fmin.mar.case4/df)
+rmsea.mar.case4
 
 
 
-sigma_not1 <- sigma.not
-sigma_not2 <- sigma.not[2:p, 2:p]
-sigma1 <- sigma
-sigma2 <- sigma[2:p, 2:p]
+fmin.mar.b.case4 <- 0.8*(log(det(solve(sigma.pattern1)))+sum(diag((sigma.star.pattern1 + (mu.star.pattern1)%*%t(mu.star.pattern1))))- sum(diag((sigma.star.pattern1 + (mu.star.pattern1-mu.pattern1)%*%t(mu.star.pattern1-mu.pattern1))%*%solve(sigma.pattern1))))+
+  0.2*(log(det(solve(sigma.pattern2)))+sum(diag((sigma.star.pattern2 + (mu.star.pattern2)%*%t(mu.star.pattern2))))- sum(diag((sigma.star.pattern2 + (mu.star.pattern2-mu.pattern2)%*%t(mu.star.pattern2-mu.pattern2))%*%solve(sigma.pattern2))))
 
 
-mu_not1 <- mu.not
-mu_not2 <-  mu.not[2:p]
-
-
-p11 <- log(det(sigma_not1%*%solve(sigma1)))
-
-p12 <- 
-  sum(diag((sigma_truc1 + 
-                   (mu_truc1-mu_not1)%*%t(mu_truc1-mu_not1))%*%solve(sigma_not1)))
-
-p13 <- 
-  sum(diag((sigma_truc1 + 
-                   (mu_truc1-mu1)%*%t(mu_truc1-mu1))%*%solve(sigma1)))
-
-F_p1 <- p11+p12-p13
-F_p1
-p21 <- log(det(sigma_not2%*%solve(sigma2)))
-
-p22 <- sum(diag((sigma_truc2 + (mu_truc2-mu_not2)%*%t(mu_truc2-mu_not2))%*%solve(sigma_not2)))
-
-p23 <- sum(diag((sigma_truc2 + (mu_truc2-mu2)%*%t(mu_truc2-mu2))%*%solve(sigma2)))
-
-F_p2 <- p21+p22-p23
-F_p2
-
-F_pop <- 
-  0.8*F_p1+0.2*F_p2
-F_pop
-
-
-
-
-rmsea.MAR <-sqrt(F_pop/df)
-rmsea.MAR
-
-
-
-#Fmin for the baseline
-
-
-p11 <- log(det(solve(sigma1)))
-
-p12 <- 
-  sum(diag((sigma_truc1 + 
-              (mu_truc1)%*%t(mu_truc1))))
-
-p13 <- 
-  sum(diag((sigma_truc1 + 
-              (mu_truc1-mu1)%*%t(mu_truc1-mu1))%*%solve(sigma1)))
-
-F_p1 <- p11+p12-p13
-F_p1
-p21 <- log(det(solve(sigma2)))
-
-p22 <- sum(diag((sigma_truc2 + (mu_truc2)%*%t(mu_truc2))))
-
-p23 <- sum(diag((sigma_truc2 + (mu_truc2-mu2)%*%t(mu_truc2-mu2))%*%solve(sigma2)))
-
-F_p2 <- p21+p22-p23
-F_p2
-
-F_pop.baseline <- 
-  0.8*F_p1+0.2*F_p2
-F_pop.baseline
-
-1-F_pop/F_pop.baseline
-
-
-
-
-
+cfi.mar.case4 <- 1-fmin.mar.case4/fmin.mar.b.case4
+cfi.mar.case4
+  
