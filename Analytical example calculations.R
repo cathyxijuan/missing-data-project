@@ -1,63 +1,111 @@
 library(tmvtnorm)
 
+sigma <- matrix(c(1, 0.89, 0.49, 0, 0, 0,
+                  0.89, 1, 0.49, 0, 0, 0,
+                  0.49, 0.49, 1, 0, 0, 0, 
+                  0,    0,    0, 1, 0.49, 0.49, 
+                  0,    0,    0, 0.49, 1, 0.49, 
+                  0,   0,    0,  0.49, 0.49, 1), nrow=6) #Population covariance matrix
+mu <- rep(0, 6) #Population mean vector
 
 sigma.not <- matrix(c(1, 0.49, 0.49, 0, 0, 0,
                       0.49, 1, 0.49, 0, 0, 0,
                       0.49, 0.49, 1, 0, 0, 0, 
                       0,    0,    0, 1, 0.49, 0.49, 
                       0,    0,    0, 0.49, 1, 0.49, 
-                      0,   0,    0,  0.49, 0.49, 1), nrow=6)
-mu.not <- rep(0, 6)
-sigma <- matrix(c(1, 0.89, 0.49, 0, 0, 0,
-                 0.89, 1, 0.49, 0, 0, 0,
-                 0.49, 0.49, 1, 0, 0, 0, 
-                 0,    0,    0, 1, 0.49, 0.49, 
-                 0,    0,    0, 0.49, 1, 0.49, 
-                 0,   0,    0,  0.49, 0.49, 1), nrow=6)
-mu <- rep(0, 6)
+                      0,   0,    0,  0.49, 0.49, 1), nrow=6) #Model-implied covariance matrix
+mu.not <- rep(0, 6) #Model-implied mean vector
 
-p <- 6
+p <- 6 #number of variables
 
-df <- 27 
+df <- 27  #degrees of freedom=6*7/2+6=27
+
+
 
 ## Case 1: Complete data
-fmin <- log(det(sigma.not%*%solve(sigma))) + sum(diag(sigma%*%solve(sigma.not))) +
+
+fmin.comp <- log(det(sigma.not%*%solve(sigma))) + sum(diag(sigma%*%solve(sigma.not))) +
        t(mu-mu.not)%*%solve(sigma.not)%*%(mu-mu.not) -p
-fmin
+fmin.comp
 
-rmsea <- sqrt(fmin/df)
-rmsea
+rmsea.case1 <- sqrt(fmin.comp/df)
+rmsea.case1
 
-fmin.base <- log(det(solve(sigma))) + sum(diag(sigma))-p
-fmin.base
+fmin.comp.b <- log(det(solve(sigma))) + sum(diag(sigma))-p
+fmin.comp.b
 
-cfi <- 1-fmin/fmin.base
-cfi
-
-
-## Case 2: deleting X6
-p.incomp <- 5
-sigma.base.incomp <- diag(5)
-sigma.incomp <- sigma[1:5, 1:5]
-sigma.not.incomp <- sigma.not[1:5, 1:5]
-mu.incomp <- mu[1:5]
-mu.not.incomp <- mu.not[1:5]
+cfi.case1 <- 1-fmin.comp/fmin.comp.b
+cfi.case1
 
 
-fmin.base.incomp <-0.8*(log(det(solve(sigma))) + sum(diag(sigma))  -p) + 
-  (0.2)*(log(det(solve(sigma.incomp))) + sum(diag(sigma.incomp))  -p.incomp)
-1-fmin/fmin.base.incomp 
+## Case 2: MCAR data; misspecification does not involve variables with missing data
+p.pattern1 <- 6 #number of variables in the first pattern
+sigma.pattern1 <- sigma #population covariance matrix for the first pattern
+mu.pattern1 <- mu #population mean vector for the first pattern
+sigma.not.pattern1 <- sigma.not #model-implied covariance matrix for the first pattern
+mu.not.pattern1 <- mu.not #model-impled mean vector for the first pattern
+
+p.pattern2 <- 5 #number of variables in the second pattern
+sigma.pattern2 <- sigma[1:5, 1:5] #population covariance matrix for the second pattern
+mu.pattern2 <- mu[1:5]#population mean vector for the second pattern
+sigma.not.pattern2 <- sigma.not[1:5, 1:5] #model-implied covariance matrix for the second pattern
+mu.not.pattern2 <- mu.not[1:5] #model-impled mean vector for the second pattern
 
 
-#case 3
-fmin.incomp2 <- 0.8*fmin
-sqrt(fmin.incomp2/df)
+fmin.mcar.case2 <- 0.8*(log(det(sigma.not.pattern1%*%solve(sigma.pattern1))) + 
+                          sum(diag(sigma.pattern1%*%solve(sigma.not.pattern1))) +
+                          t(mu.pattern1-mu.not.pattern1)%*%solve(sigma.not.pattern1)%*%(mu.pattern1-mu.not.pattern1) 
+                        -p.pattern1) +
+  0.2*(log(det(sigma.not.pattern2%*%solve(sigma.pattern2))) + 
+         sum(diag(sigma.pattern2%*%solve(sigma.not.pattern2))) +
+         t(mu.pattern2-mu.not.pattern2)%*%solve(sigma.not.pattern2)%*%(mu.pattern2-mu.not.pattern2) 
+       -p.pattern2)
+fmin.mcar.case2
 
-sigma.incomp2 <- sigma[2:6, 2:6]
-fmin.base.incomp2 <-0.8*(log(det(solve(sigma))) + sum(diag(sigma))  -p) + 
-  (0.2)*(log(det(solve(sigma.incomp2))) + sum(diag(sigma.incomp2))  -p.incomp)
-fmin.base.incomp2
-1-fmin.incomp2/fmin.base.incomp2
+rmsea.case2 <- sqrt(fmin.mcar.case2/df)
+rmsea.case2
+
+fmin.mcar.b.case2 <-0.8*(log(det(solve(sigma.pattern1))) + sum(diag(sigma.pattern1))  -p.pattern1) + 
+  (0.2)*(log(det(solve(sigma.pattern2))) + sum(diag(sigma.pattern2))  -p.pattern2)
+
+cfi.case2 <- 1-fmin.mcar.case2/fmin.mcar.b.case2 
+cfi.case2 
+
+
+
+
+#case 3:  MCAR data; misspecification involves variables with missing data
+p.pattern1 <- 6 #number of variables in the first pattern
+sigma.pattern1 <- sigma #population covariance matrix for the first pattern
+mu.pattern1 <- mu #population mean vector for the first pattern
+sigma.not.pattern1 <- sigma.not #model-implied covariance matrix for the first pattern
+mu.not.pattern1 <- mu.not #model-impled mean vector for the first pattern
+
+p.pattern2 <- 5 #number of variables in the second pattern
+sigma.pattern2 <- sigma[2:6, 2:6] #population covariance matrix for the second pattern
+mu.pattern2 <- mu[2:6]#population mean vector for the second pattern
+sigma.not.pattern2 <- sigma.not[2:6, 2:6] #model-implied covariance matrix for the second pattern
+mu.not.pattern2 <- mu.not[2:6] #model-impled mean vector for the second pattern
+
+
+fmin.mcar.case3 <- 0.8*(log(det(sigma.not.pattern1%*%solve(sigma.pattern1))) + 
+                          sum(diag(sigma.pattern1%*%solve(sigma.not.pattern1))) +
+                          t(mu.pattern1-mu.not.pattern1)%*%solve(sigma.not.pattern1)%*%(mu.pattern1-mu.not.pattern1) 
+                        -p.pattern1) +
+  0.2*(log(det(sigma.not.pattern2%*%solve(sigma.pattern2))) + 
+         sum(diag(sigma.pattern2%*%solve(sigma.not.pattern2))) +
+         t(mu.pattern2-mu.not.pattern2)%*%solve(sigma.not.pattern2)%*%(mu.pattern2-mu.not.pattern2) 
+       -p.pattern2)
+fmin.mcar.case3
+
+rmsea.case3 <- sqrt(fmin.mcar.case3/df)
+rmsea.case3
+
+fmin.mcar.b.case3 <-0.8*(log(det(solve(sigma.pattern1))) + sum(diag(sigma.pattern1))  -p.pattern1) + 
+  (0.2)*(log(det(solve(sigma.pattern2))) + sum(diag(sigma.pattern2))  -p.pattern2)
+
+cfi.case3 <- 1-fmin.mcar.case3/fmin.mcar.b.case3
+cfi.case3 
 
 
 
@@ -67,8 +115,7 @@ fmin.base.incomp2
 
 
 
-
-#Case 4: MAR data example
+#Case 4: MAR data; misspecification involves variables with missing data
 cutoff <- qnorm(0.8)
 #Pattern1 : complete
 mu1    <- rep(0,6)
@@ -165,15 +212,3 @@ F_pop.baseline
 
 
 
-#second section examples 
-eta_not <- 0.5
-psi_not <- 1
-
-fmin2.1<- log(4*eta_not*psi_not)+1/psi_not+1/(2*eta_not)-2
-fmin2.1
-sqrt(fmin2.1)
-sqrt(fmin2.1*0.5)
-
-sqrt(fmin2.1/2)
-
-sqrt(0.5274/2)
