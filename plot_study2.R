@@ -99,3 +99,13 @@ data %>% filter(Number_of_Missing_Variables=="Six Variables with Missing Data" &
                   Missing_Mechanism==" Weak MAR" & FC==0.2 )
 (0.5379-0.6366) / 0.5379
 (0.1915 -0.1541)/ 0.1915
+
+
+data %>% filter(Number_of_Missing_Variables=="Six Variables with Missing Data" & 
+                  Number_Of_Patterns=="Maximum Missing Pattern" &
+                  Missing_Mechanism==" Weak MAR" & FC==0.7 )
+
+
+data %>% filter(Number_of_Missing_Variables=="Six Variables with Missing Data" & 
+                  Number_Of_Patterns=="Maximum Missing Pattern" &
+                  Missing_Mechanism=="Strong MAR" & FC==0.7 )

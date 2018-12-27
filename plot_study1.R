@@ -32,6 +32,18 @@ ggplot(data1, aes(x=Size_Of_CR, y=CFI)) +
   scale_y_continuous(limits = c(0.70, 1))+ 
   theme_bw() 
 
+filter(data,Number_Of_CR=="Two Correlated Residuals"
+       & Missing_Mechanism=="  MCAR" 
+       & FC=="Factor Correlation = 0" &
+         Size_Of_CR=="0.4"&Number_of_Missing_Variables=="Four Variables with Missing Data"
+       & Location_Of_Misfit=="Same Factor (SF)")
+(0.166227-0.118801)/0.118801
+#crossing cutoff point
+filter(data,Number_Of_CR=="Two Correlated Residuals"
+       & Missing_Mechanism=="  MCAR" 
+       & FC=="Factor Correlation = 0" &
+         Size_Of_CR=="0.3"&Number_of_Missing_Variables=="Four Variables with Missing Data"
+       & Location_Of_Misfit=="Same Factor (SF)")
 
 #Location of Misfit and Factor Correlation #i.e., Figure 3
 
@@ -51,6 +63,8 @@ filter(data,Number_Of_CR == "Two Correlated Residuals"&
          FC=="Factor Correlation = 0.8" & Location_Of_Misfit=="Different Factor (DF)" & Size_Of_CR=="0.4") 
 (0.1051-0.1022)/0.1051
 (0.1749- 0.1736 )/0.1749
+
+
 
 
 ggplot(data2, aes(x=Size_Of_CR , y=RMSEA)) + 
@@ -98,6 +112,9 @@ filter(data,Number_Of_CR=="Two Correlated Residuals" & FC=="Factor Correlation =
        & Size_Of_CR=="0.4" & Location_Of_Misfit=="Same Factor (SF)")
 (0.1678-0.1477)/0.1678
 (0.1477-0.1156) /0.1477
+
+
+
 ggplot(data3, aes(x=Size_Of_CR, y=RMSEA)) + 
   geom_line(aes(linetype=Percent_Missing, color=Percent_Missing)) + 
   geom_point(aes(color=Percent_Missing))+

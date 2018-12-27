@@ -20,7 +20,7 @@ p <- 6
 
 df <- 27 
 
-## Complete data
+## Case 1: Complete data
 fmin <- log(det(sigma.not%*%solve(sigma))) + sum(diag(sigma%*%solve(sigma.not))) +
        t(mu-mu.not)%*%solve(sigma.not)%*%(mu-mu.not) -p
 fmin
@@ -28,26 +28,28 @@ fmin
 rmsea <- sqrt(fmin/df)
 rmsea
 
-
-fmin.base <- log(det(solve(sigma))) + sum(diag(sigma))  -p
+fmin.base <- log(det(solve(sigma))) + sum(diag(sigma))-p
 fmin.base
 
 cfi <- 1-fmin/fmin.base
 cfi
 
 
-#incomplete data
+## Case 2: deleting X6
 p.incomp <- 5
 sigma.base.incomp <- diag(5)
 sigma.incomp <- sigma[1:5, 1:5]
 sigma.not.incomp <- sigma.not[1:5, 1:5]
 mu.incomp <- mu[1:5]
 mu.not.incomp <- mu.not[1:5]
+
+
 fmin.base.incomp <-0.8*(log(det(solve(sigma))) + sum(diag(sigma))  -p) + 
   (0.2)*(log(det(solve(sigma.incomp))) + sum(diag(sigma.incomp))  -p.incomp)
 1-fmin/fmin.base.incomp 
 
 
+#case 3
 fmin.incomp2 <- 0.8*fmin
 sqrt(fmin.incomp2/df)
 
@@ -59,19 +61,14 @@ fmin.base.incomp2
 
 
 
-fmin.incomp2 <- 0.5*fmin
-sqrt(fmin.incomp2/df)
-
-sigma.incomp2 <- sigma[2:6, 2:6]
-fmin.base.incomp2 <-0.5*(log(det(solve(sigma))) + sum(diag(sigma))  -p) + 
-  (0.5)*(log(det(solve(sigma.incomp2))) + sum(diag(sigma.incomp2))  -p.incomp)
-fmin.base.incomp2
-1-fmin.incomp2/fmin.base.incomp2
 
 
 
 
-#MAR data example
+
+
+
+#Case 4: MAR data example
 cutoff <- qnorm(0.8)
 #Pattern1 : complete
 mu1    <- rep(0,6)

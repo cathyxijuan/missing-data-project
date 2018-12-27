@@ -14,6 +14,8 @@ x~~0*y
 fit.mod <- "
 y~1*x"
 
+lavInspect(fit.mod, "fit")
+
 sample.nobs=1000000
 missing.percentage=0.5
 simuData<- simulateData(pop.mod , sample.nobs=sample.nobs,seed=111)
@@ -21,7 +23,9 @@ sigma<- cov(simuData)
 
 fit<- sem(fit.mod, data=simuData, missing="fiml", mimic="EQS")
 summary(fit)
+lavInspect(fit, "resid")$cov
 lavInspect(fit, "cov.ov")
+
 lavInspect(fit, "fit")
 names(simuData)
 simuData[1:(sample.nobs*missing.percentage),  1] <-NA
