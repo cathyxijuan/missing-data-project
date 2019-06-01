@@ -88,16 +88,15 @@ sigma.not.pattern2 <- sigma.not[2:6, 2:6] #model-implied covariance matrix for t
 mu.not.pattern2 <- mu.not[2:6] #model-impled mean vector for the second pattern
 
 
-fmin.mcar.case3 <- 0.8*(log(det(sigma.not.pattern1%*%solve(sigma.pattern1))) + 
-                          sum(diag(sigma.pattern1%*%solve(sigma.not.pattern1))) +
-                          t(mu.pattern1-mu.not.pattern1)%*%solve(sigma.not.pattern1)%*%(mu.pattern1-mu.not.pattern1) 
-                        -p.pattern1) +
+fmin.mcar.case3 <- 0.8*(log(det(sigma.not.pattern1%*%solve(sigma.pattern1))) + #1.200235
+                          sum(diag(sigma.pattern1%*%solve(sigma.not.pattern1))) + t(mu.pattern1-mu.not.pattern1)%*%solve(sigma.not.pattern1)%*%(mu.pattern1-mu.not.pattern1)  #5.611804
+                        -p.pattern1) + #6
   0.2*(log(det(sigma.not.pattern2%*%solve(sigma.pattern2))) + 
          sum(diag(sigma.pattern2%*%solve(sigma.not.pattern2))) +
          t(mu.pattern2-mu.not.pattern2)%*%solve(sigma.not.pattern2)%*%(mu.pattern2-mu.not.pattern2) 
        -p.pattern2)
 fmin.mcar.case3
-
+5.611804-6 #-0.388196
 rmsea.case3 <- sqrt(fmin.mcar.case3/df)
 rmsea.case3
 
@@ -155,7 +154,6 @@ fmin.mar.case4
 
 rmsea.mar.case4 <-sqrt(fmin.mar.case4/df)
 rmsea.mar.case4
-
 
 
 fmin.mar.b.case4 <- 0.8*(log(det(solve(sigma.pattern1)))+sum(diag((sigma.star.pattern1 + (mu.star.pattern1)%*%t(mu.star.pattern1))))- sum(diag((sigma.star.pattern1 + (mu.star.pattern1-mu.pattern1)%*%t(mu.star.pattern1-mu.pattern1))%*%solve(sigma.pattern1))))+

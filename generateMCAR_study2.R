@@ -202,6 +202,17 @@ MCARMaxPattern_6Var <- function(model, sample.nobs=1000000,  missing.percentage=
 }
 
 
+#simuDatawithMiss <- MCARMaxPattern_6Var(pop.mod9)
+#save(simuDatawithMiss, file="simuDatawithMiss.RData")
+#summary(simuDatawithMiss)
+#simuDataComplete <- simulateData(pop.mod9, sample.nobs=1000000, seed=111)
+#save(simuDataComplete, file="simuDataComplete.RData")
+# load("simuDatawithMiss.RData")
+# fit <- cfa(fitted.mod, data=simuDatawithMiss, missing="fiml", mimic="EQS")
+# lavInspect(fit, "fit")[c("fmin","rmsea","cfi")] #RMSEA=0.112; CFI=0.7640390
+# 
+# fit <- cfa(fitted.mod, data=simuDataComplete, missing="fiml", mimic="EQS")
+# lavInspect(fit, "fit")[c("fmin","rmsea","cfi")] #RMSEA=0.1915; CFI=0.53785
 
 #Usage: put fit indices for a list of models into a matrix
 

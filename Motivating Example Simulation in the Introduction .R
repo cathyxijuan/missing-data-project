@@ -19,6 +19,9 @@ x4 ~~ .51*x4
 x5 ~~ .51*x5
 x6 ~~ .51*x6
 '
+
+6*7/2-6
+
 n=1000000
 percentMiss <- 0.5
 data <- simulateData(pop.mod, sample.nobs = n, seed=123 )
